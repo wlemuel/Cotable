@@ -28,17 +28,15 @@ public class ApiHttpClient {
     private static final String DEV_API_URL = "wcf.open.cnblogs.com/%s";
     private static final String REAL_API_URL = "wcf.open.cnblogs.com/%s";
     private static final String DEF_API_URL = DEV_API_URL;
-    private static String API_URL;
-    private static boolean isUseSSL;
-
-    public static AsyncHttpClient client;
-
     private static final String HTTP = "http://";
     private static final String HTTPS = "https://";
     private static final String GET = "GET";
     private static final String POST = "POST";
     private static final String PUT = "PUT";
     private static final String DELETE = "DELETE";
+    public static AsyncHttpClient client;
+    private static String API_URL;
+    private static boolean isUseSSL;
 
     // Set the API_URL
     static {
@@ -56,7 +54,7 @@ public class ApiHttpClient {
      * @return the client
      */
     public static AsyncHttpClient getHttpClient() {
-        if(client == null) setHttpClient(new AsyncHttpClient());
+        if (client == null) setHttpClient(new AsyncHttpClient());
         return client;
     }
 

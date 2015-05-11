@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_main_blog_list_item"
-    android:orientation="vertical"
-    android:padding="@dimen/blog_item_padding">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bg_main_blog_list_item"
+              android:orientation="vertical"
+              android:padding="@dimen/blog_item_padding">
 
     <TextView
         android:id="@+id/blog_title"
@@ -13,13 +13,13 @@
         android:layout_height="wrap_content"
         android:text="@string/blog_item_title_default"
         android:textColor="@color/blog_item_title"
-        android:textSize="@dimen/blog_item_title" />
+        android:textSize="@dimen/blog_item_title"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/blog_item_content_marginV"
         android:layout_marginBottom="@dimen/blog_item_content_marginV"
+        android:layout_marginTop="@dimen/blog_item_content_marginV"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -31,15 +31,15 @@
             android:padding="2dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_blog_item_avatar"
-            app:border_width="2dp"
-            app:border_color="@color/blog_item_avatar_border"/>
+            app:border_color="@color/blog_item_avatar_border"
+            app:border_width="2dp"/>
 
         <TextView
             android:id="@+id/blog_summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/blog_item_desc_default"
-            android:textColor="@color/blog_item_desc" />
+            android:textColor="@color/blog_item_desc"/>
     </LinearLayout>
 
     <LinearLayout
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:text="@string/blog_item_author_default"
             android:textColor="@color/blog_item_author"
-            android:textSize="@dimen/blog_item_author" />
+            android:textSize="@dimen/blog_item_author"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -72,7 +72,7 @@
             android:paddingRight="@dimen/blog_item_posted_paddingRight"
             android:text="@string/blog_item_posted_default"
             android:textColor="@color/blog_item_text"
-            android:textSize="@dimen/blog_item_posted" />
+            android:textSize="@dimen/blog_item_posted"/>
 
         <TextView
             android:id="@+id/blog_updated"
@@ -81,7 +81,7 @@
             android:layout_toRightOf="@+id/blog_item_posted"
             android:text="@string/blog_item_date_default"
             android:textColor="@color/blog_item_text"
-            android:textSize="@dimen/blog_item_date" />
+            android:textSize="@dimen/blog_item_date"/>
 
         <TextView
             android:id="@+id/blog_comments"
@@ -91,7 +91,7 @@
             android:layout_toLeftOf="@+id/blog_reads"
             android:text="@string/blog_item_comments_default"
             android:textColor="@color/blog_item_text"
-            android:textSize="@dimen/blog_item_comment" />
+            android:textSize="@dimen/blog_item_comment"/>
 
         <TextView
             android:id="@+id/blog_reads"
@@ -101,7 +101,7 @@
             android:layout_alignParentRight="true"
             android:text="@string/blog_item_reading_default"
             android:textColor="@color/blog_item_text"
-            android:textSize="@dimen/blog_item_reading" />
+            android:textSize="@dimen/blog_item_reading"/>
     </RelativeLayout>
 
 </LinearLayout>

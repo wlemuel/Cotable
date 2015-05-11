@@ -7,7 +7,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 /**
- * Created by Sim on 2014/12/15.
+ * FixedRecycleView
+ *
+ * @author Steve Lemuel
+ * @version 0.1
+ * @desc FixedRecycleView
+ * @created 2015/05/11
+ * @updated 2015/05/11
  */
 public class FixedRecyclerView extends RecyclerView {
     public FixedRecyclerView(Context context) {

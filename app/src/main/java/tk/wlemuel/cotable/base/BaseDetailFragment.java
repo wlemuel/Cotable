@@ -21,7 +21,7 @@ import tk.wlemuel.cotable.ui.empty.EmptyLayout;
  * @created 2015/05/11
  * @updated 2015/05/11
  */
-public abstract class BaseDetailFragment extends BaseFragment{
+public abstract class BaseDetailFragment extends BaseFragment {
 
     protected EmptyLayout mEmptyLayout;
     protected WebView mWebView;
@@ -41,10 +41,10 @@ public abstract class BaseDetailFragment extends BaseFragment{
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            if(mEmptyLayout != null){
-                if(receiveError){
+            if (mEmptyLayout != null) {
+                if (receiveError) {
                     mEmptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
-                }else{
+                } else {
                     mEmptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
                 }
             }
@@ -57,9 +57,9 @@ public abstract class BaseDetailFragment extends BaseFragment{
 
     };
 
-    @SuppressLint({ "SetJavaScriptEnabled", "JavascriptInterface" })
+    @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    protected void initWebView(WebView webView){
+    protected void initWebView(WebView webView) {
         WebSettings settings = webView.getSettings();
         settings.setDefaultFontSize(15);
         settings.setJavaScriptEnabled(true);
@@ -67,9 +67,9 @@ public abstract class BaseDetailFragment extends BaseFragment{
         settings.setBuiltInZoomControls(true);
 
         int sysVersion = Build.VERSION.SDK_INT;
-        if(sysVersion >= 11){
+        if (sysVersion >= 11) {
             settings.setDisplayZoomControls(false);
-        }else{
+        } else {
             ZoomButtonsController zbc = new ZoomButtonsController(webView);
             zbc.getZoomControls().setVisibility(View.GONE);
         }

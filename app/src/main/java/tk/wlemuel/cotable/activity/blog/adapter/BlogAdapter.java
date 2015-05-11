@@ -51,11 +51,11 @@ public class BlogAdapter extends BaseRecycleAdapter {
 
     }
 
-    static class ViewHolder extends BaseRecycleAdapter.ViewHolder{
+    static class ViewHolder extends BaseRecycleAdapter.ViewHolder {
         public TextView mTitle, mSummary, mAuthorName, mUpdated, mComments, mReads;
         public CircleImageView mAuthorAvatar;
 
-        public ViewHolder(int viewType, View view){
+        public ViewHolder(int viewType, View view) {
             super(viewType, view);
 
             mTitle = (TextView) view.findViewById(R.id.blog_title);

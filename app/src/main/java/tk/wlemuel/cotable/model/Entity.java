@@ -12,6 +12,7 @@ package tk.wlemuel.cotable.model;
 public abstract class Entity extends Base {
 
     protected int id;
+    protected String cacheKey;
 
     public int getId() {
         return id;
@@ -20,8 +21,6 @@ public abstract class Entity extends Base {
     public void setId(int id) {
         this.id = id;
     }
-
-    protected String cacheKey;
 
     public String getCacheKey() {
         return cacheKey;

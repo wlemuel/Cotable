@@ -16,12 +16,6 @@ public abstract class BaseTabFragment extends BaseFragment {
         return mListener.isCurrent(this);
     }
 
-
-    public interface TabChangedListener {
-
-        boolean isCurrent(BaseTabFragment fragment);
-    }
-
     public void f() {
     }
 
@@ -32,5 +26,10 @@ public abstract class BaseTabFragment extends BaseFragment {
     }
 
     public void i() {
+    }
+
+    public interface TabChangedListener {
+
+        boolean isCurrent(BaseTabFragment fragment);
     }
 }

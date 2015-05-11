@@ -42,42 +42,17 @@ public class AppContext extends BaseApplication {
     private static final String KEY_BLOG_LASTEST = "KEY_BLOG_LASTEST";
     private static final String KEY_BLOG_RECOMMENT = "KEY_BLOG_RECOMMENT";
     private static final String KEY_NEWS_LASTEST = "KEY_NEWS_LASTEST";
-
+    private static AppContext _instance;
     private String saveImagePath;
 
-    private static AppContext _instance;
-
-    @Override
-    protected void init() {
-        super.init();
-
-        _instance = this;
-
-        init2();
-
+    public static int getSoftKeyboardHeight() {
+        return getPreferences().getInt(KEY_SOFTKEYBOARD_HEIGHT, 0);
     }
 
     public static void setSoftKeyboardHeight(int height) {
         Editor editor = getPreferences().edit();
         editor.putInt(KEY_SOFTKEYBOARD_HEIGHT, height);
         apply(editor);
-    }
-
-    public static int getSoftKeyboardHeight() {
-        return getPreferences().getInt(KEY_SOFTKEYBOARD_HEIGHT, 0);
-    }
-
-    private void init2() {
-        // Set the image path
-        saveImagePath = getProperty(AppConfig.SAVE_IMAGE_PATH);
-        if (StringUtils.isEmpty(saveImagePath)) {
-            setProperty(AppConfig.SAVE_IMAGE_PATH,
-                    AppConfig.DEFAULT_IMAGE_PATH);
-            saveImagePath = AppConfig.DEFAULT_IMAGE_PATH;
-        }
-
-        // Init the AsyncHttpClient
-        ApiHttpClient.getHttpClient();
     }
 
     public static boolean shouldLoadImage() {
@@ -97,11 +72,8 @@ public class AppContext extends BaseApplication {
      */
     public static boolean hasSDCardMounted() {
         String state = Environment.getExternalStorageState();
-        if (state != null && state.equals(Environment.MEDIA_MOUNTED)) {
-            return true;
-        }
+        return state != null && state.equals(Environment.MEDIA_MOUNTED);
 
-        return false;
     }
 
     /**
@@ -125,6 +97,39 @@ public class AppContext extends BaseApplication {
                 return (long) stats.getBlockSize() * (long) stats.getAvailableBlocks();
             }
         }
+    }
+
+    public static void setRefreshTime(String cacheKey, long time) {
+        Editor editor = getPreferences().edit();
+        editor.putLong(cacheKey, time);
+        apply(editor);
+    }
+
+    public static long getRefreshTime(String cacheKey) {
+        return getPreferences().getLong(cacheKey, 0);
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+
+        _instance = this;
+
+        init2();
+
+    }
+
+    private void init2() {
+        // Set the image path
+        saveImagePath = getProperty(AppConfig.SAVE_IMAGE_PATH);
+        if (StringUtils.isEmpty(saveImagePath)) {
+            setProperty(AppConfig.SAVE_IMAGE_PATH,
+                    AppConfig.DEFAULT_IMAGE_PATH);
+            saveImagePath = AppConfig.DEFAULT_IMAGE_PATH;
+        }
+
+        // Init the AsyncHttpClient
+        ApiHttpClient.getHttpClient();
     }
 
     /**
@@ -211,14 +216,13 @@ public class AppContext extends BaseApplication {
         AppConfig.getAppConfig(this).set(key, value);
     }
 
-    public void setProperties(Properties p) {
-        AppConfig.getAppConfig(this).set(p);
-    }
-
     public Properties getProperties() {
         return AppConfig.getAppConfig(this).get();
     }
 
+    public void setProperties(Properties p) {
+        AppConfig.getAppConfig(this).set(p);
+    }
 
     public String getProperty(String key) {
         return AppConfig.getAppConfig(this).get(key);
@@ -231,15 +235,5 @@ public class AppContext extends BaseApplication {
 
     public void removeProperty(String... keys) {
         AppConfig.getAppConfig(this).remove(keys);
-    }
-
-    public static void setRefreshTime(String cacheKey, long time) {
-        Editor editor = getPreferences().edit();
-        editor.putLong(cacheKey, time);
-        apply(editor);
-    }
-
-    public static long getRefreshTime(String cacheKey) {
-        return getPreferences().getLong(cacheKey, 0);
     }
 }

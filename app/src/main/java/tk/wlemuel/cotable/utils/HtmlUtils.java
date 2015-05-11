@@ -21,8 +21,8 @@ public class HtmlUtils {
     private static final String REAL_AND = "&";
     private static final String REAL_QUOTE = "\"";
 
-    public static String filter(String org){
-        if(org == null || org == "") return "";
+    public static String filter(String org) {
+        if (org == null || org == "") return "";
         org = org.replace(LESS_THEN, REAL_LESS_THEN);
         org = org.replace(GREAT_THEN, REAL_GREAT_THEN);
         org = org.replace(AND, REAL_AND);

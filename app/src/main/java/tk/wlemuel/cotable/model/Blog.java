@@ -60,140 +60,6 @@ public class Blog extends Base {
 
     private String postId;
 
-    public String getPostId() {
-        return postId;
-    }
-
-    public void setPostId(String postId) {
-        this.postId = postId;
-    }
-
-    public int getBlogId() {
-        return blogId;
-    }
-
-    public void setBlogId(int blogId) {
-        this.blogId = blogId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSummary() {
-        if (summary != null && !summary.endsWith(" ..."))
-            summary = summary + " ...";
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public Date getPublished() {
-        return published;
-    }
-
-
-    public void setPublished(Date published) {
-        this.published = published;
-    }
-
-    public String getUpdated() {
-        if (updated != null) {
-            return StringUtils.friendly_time(
-                    StringUtils.dateToString(updated)
-            );
-        }
-
-        return StringUtils.dateToString(new Date());
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
-    }
-
-    public String getAuthor_name() {
-        return author_name;
-    }
-
-    public void setAuthor_name(String author_name) {
-        this.author_name = author_name;
-    }
-
-    public URL getAuthor_uri() {
-        return author_uri;
-    }
-
-    public void setAuthor_uri(URL author_uri) {
-        this.author_uri = author_uri;
-    }
-
-    public URL getAuthor_avatar() {
-        return author_avatar;
-    }
-
-    public void setAuthor_avatar(URL author_avatar) {
-        this.author_avatar = author_avatar;
-    }
-
-    public URL getUrl() {
-        return url;
-    }
-
-    public void setUrl(URL url) {
-        this.url = url;
-    }
-
-    public String getBlogapp() {
-        return blogapp;
-    }
-
-    public void setBlogapp(String blogapp) {
-        this.blogapp = blogapp;
-    }
-
-
-    public void setDiggs(int diggs) {
-        this.diggs = diggs;
-    }
-
-    public int getDiggs() {
-        return diggs;
-    }
-
-    public int getReads() {
-        return reads;
-    }
-
-    public int getComments() {
-        return comments;
-    }
-
-    public void setReads(int reads) {
-        this.reads = reads;
-    }
-
-
-    public void setComments(int comments) {
-        this.comments = comments;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (object instanceof Blog) {
-            Blog blog = (Blog) object;
-            return String.valueOf(blog.getBlogId()).equals(
-                    String.valueOf(this.getBlogId()));
-        } else {
-            return super.equals(object);
-        }
-    }
-
     /**
      * Parse the dato to Blog List.
      *
@@ -283,6 +149,137 @@ public class Blog extends Base {
 
 
         return blogList;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
+    }
+
+    public int getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(int blogId) {
+        this.blogId = blogId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSummary() {
+        if (summary != null && !summary.endsWith(" ..."))
+            summary = summary + " ...";
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public Date getPublished() {
+        return published;
+    }
+
+    public void setPublished(Date published) {
+        this.published = published;
+    }
+
+    public String getUpdated() {
+        if (updated != null) {
+            return StringUtils.friendly_time(
+                    StringUtils.dateToString(updated)
+            );
+        }
+
+        return StringUtils.dateToString(new Date());
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
+    }
+
+    public String getAuthor_name() {
+        return author_name;
+    }
+
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
+    }
+
+    public URL getAuthor_uri() {
+        return author_uri;
+    }
+
+    public void setAuthor_uri(URL author_uri) {
+        this.author_uri = author_uri;
+    }
+
+    public URL getAuthor_avatar() {
+        return author_avatar;
+    }
+
+    public void setAuthor_avatar(URL author_avatar) {
+        this.author_avatar = author_avatar;
+    }
+
+    public URL getUrl() {
+        return url;
+    }
+
+    public void setUrl(URL url) {
+        this.url = url;
+    }
+
+    public String getBlogapp() {
+        return blogapp;
+    }
+
+    public void setBlogapp(String blogapp) {
+        this.blogapp = blogapp;
+    }
+
+    public int getDiggs() {
+        return diggs;
+    }
+
+    public void setDiggs(int diggs) {
+        this.diggs = diggs;
+    }
+
+    public int getReads() {
+        return reads;
+    }
+
+    public void setReads(int reads) {
+        this.reads = reads;
+    }
+
+    public int getComments() {
+        return comments;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof Blog) {
+            Blog blog = (Blog) object;
+            return String.valueOf(blog.getBlogId()).equals(
+                    String.valueOf(this.getBlogId()));
+        } else {
+            return super.equals(object);
+        }
     }
 
 }

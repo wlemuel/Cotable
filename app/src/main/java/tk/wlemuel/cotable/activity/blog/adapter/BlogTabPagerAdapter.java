@@ -23,29 +23,29 @@ import tk.wlemuel.cotable.ui.pagertab.SlidingTabPagerAdapter;
  * @created 2015/05/10
  * @updated 2015/05/10
  */
-public final class BlogTabPagerAdapter extends SlidingTabPagerAdapter{
+public final class BlogTabPagerAdapter extends SlidingTabPagerAdapter {
     public BlogTabPagerAdapter(FragmentManager mgr, Context context,
-                               ViewPager viewPager){
+                               ViewPager viewPager) {
         super(mgr, BlogTab.values().length, context.getApplicationContext(),
                 viewPager);
 
         BlogTab[] tabs = BlogTab.values();
 
-        for(BlogTab tab : tabs){
+        for (BlogTab tab : tabs) {
             Fragment fragment = null;
             List<Fragment> list = mgr.getFragments();
-            if(list != null){
+            if (list != null) {
                 Iterator<Fragment> iter = list.iterator();
-                while (iter.hasNext()){
+                while (iter.hasNext()) {
                     fragment = iter.next();
-                    if(fragment.getClass() == tab.getClz())
+                    if (fragment.getClass() == tab.getClz())
                         break;
                 }
             }
 
             BaseTabFragment tabFragment = (BaseTabFragment) fragment;
-            if(tabFragment == null){
-                try{
+            if (tabFragment == null) {
+                try {
                     tabFragment = (BaseTabFragment) tab.getClz().newInstance();
                 } catch (InstantiationException e) {
                     e.printStackTrace();
@@ -55,7 +55,7 @@ public final class BlogTabPagerAdapter extends SlidingTabPagerAdapter{
             }
 
             tabFragment.a(this);
-            if(!tabFragment.isAdded()){
+            if (!tabFragment.isAdded()) {
                 Bundle args = new Bundle();
                 args.putInt(BlogFragment.BUNDLE_KEY_CATALOG,
                         tab.getCatalog());

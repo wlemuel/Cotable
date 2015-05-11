@@ -16,9 +16,7 @@ public class BaseApi {
     public static final String TAG = BaseApi.class.getSimpleName();
 
     protected static final String DEFAULT_API_URL = "wcf.open.cnblogs.com";
-    protected static String API_URL = DEFAULT_API_URL;
     protected static final String UTF8 = AppConfig.UTF8;
-
     protected final static String FLAG_ITEMCOUNT = "{ITEMCOUNT}";
     protected final static String FLAG_CONTENTID = "{CONTENTID}";
     protected final static String FLAG_PAGEINDEX = "{PAGEINDEX}";
@@ -26,7 +24,6 @@ public class BaseApi {
     protected final static String FLAG_BLOGAPP = "{BLOGAPP}";
     protected final static String FLAG_POSTID = "{POSTID}";
     protected final static String FLAG_TERM = "{TERM}";
-
     // Api (NEWS)
     // 获取新闻列表
     protected final static String NEWS_LIST = "news/GetData";
@@ -42,7 +39,6 @@ public class BaseApi {
     protected final static String RECENT_NEWS_PAGED = "news/recent/paged/{PAGEINDEX}/{PAGESIZE}";
     // 分页获取推荐新闻列表
     protected final static String RECOMMEND_NEWS_PAGED = "news/recommend/paged/{PAGEINDEX}/{PAGESIZE}";
-
     // Api (BLOG)
     // 48小时阅读排行
     protected final static String TOP_VIEW_POSTS_48_HOUR = "blog/48HoursTopViewPosts/{ITEMCOUNT}";
@@ -64,6 +60,7 @@ public class BaseApi {
     protected final static String TEN_DAYS_TOP_DIGG_POSTS = "blog/TenDaysTopDiggPosts/{ITEMCOUNT}";
     // 分页获取个人博客文章列表
     protected final static String USER_BLOGS_LIST_PAGED = "blog/u/{BLOGAPP}/posts/{PAGEINDEX}/{PAGESIZE}";
+    protected static String API_URL = DEFAULT_API_URL;
 
 
 }

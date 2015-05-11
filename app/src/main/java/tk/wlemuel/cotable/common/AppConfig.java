@@ -41,10 +41,8 @@ public class AppConfig {
 
     // Other configurations
     public final static int SEARCH_ICON_SIZE_PATCH = 20;
-
-
-    private Context _context;
     private static AppConfig _appConfig;
+    private Context _context;
 
     public static AppConfig getAppConfig() {
         if (_appConfig == null) _appConfig = new AppConfig();
@@ -65,7 +63,7 @@ public class AppConfig {
         return getSharedPreferences(context).getBoolean(CONF_LOAD_IMAGE, true);
     }
 
-    public static int getPageSize(Context context){
+    public static int getPageSize(Context context) {
         return getSharedPreferences(context).getInt(CONF_PAGE_SIZE, DEFAULT_PAGE_SIZE);
     }
 
@@ -96,42 +94,42 @@ public class AppConfig {
         return props;
     }
 
-    private void setProps(Properties props){
+    private void setProps(Properties props) {
         FileOutputStream fos = null;
-        try{
+        try {
             File dirConf = _context.getDir(APP_CONFIG, Context.MODE_MULTI_PROCESS);
             File conf = new File(dirConf, APP_CONFIG);
             fos = new FileOutputStream(conf);
 
             props.store(fos, null);
             fos.flush();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 if (fos != null) fos.close();
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
     }
 
-    public void set(Properties p){
+    public void set(Properties p) {
         Properties props = get();
         p.putAll(p);
         setProps(props);
     }
 
-    public void set(String key, String value){
+    public void set(String key, String value) {
         Properties props = get();
         props.put(key, value);
         setProps(props);
     }
 
-    public void remove(String... keys){
+    public void remove(String... keys) {
         Properties props = get();
-        for(String key : keys)
+        for (String key : keys)
             props.remove(key);
 
         setProps(props);

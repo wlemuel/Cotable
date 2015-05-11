@@ -77,7 +77,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         }
     };
 
-    protected int getLayoutRes(){
+    protected int getLayoutRes() {
         return R.layout.fragment_swipe_refresh_recycleview;
     }
 
@@ -85,7 +85,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
-        if(args != null) mCatalog = args.getInt(BUNDLE_KEY_CATALOG);
+        if (args != null) mCatalog = args.getInt(BUNDLE_KEY_CATALOG);
     }
 
     @Override
@@ -95,7 +95,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         return view;
     }
 
-    protected void initView(View view){
+    protected void initView(View view) {
         mErrorLayout = (EmptyLayout) view.findViewById(R.id.error_layout);
         mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +129,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         if (mAdapter != null) {
             mRecycleView.setAdapter(mAdapter);
             mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-        }else{
+        } else {
             mAdapter = getListAdapter();
             mAdapter.setOnItemClickListener(this);
             mAdapter.setOnItemLongClickListener(this);
@@ -148,7 +148,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         if (mStoreEmptyState != -1) {
             mErrorLayout.setErrorType(mStoreEmptyState);
         }
-        if(!TextUtils.isEmpty(mStoreEmptyMessage)){
+        if (!TextUtils.isEmpty(mStoreEmptyMessage)) {
             mErrorLayout.setErrorMessage(mStoreEmptyMessage);
         }
 
@@ -179,6 +179,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
     }
 
     protected abstract BaseRecycleAdapter getListAdapter();
+
     protected boolean requestDataIfViewCreated() {
         return true;
     }
@@ -197,7 +198,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
                 .append(TDevice.getPageSize()).toString();
     }
 
-    protected void requestData(boolean refresh){
+    protected void requestData(boolean refresh) {
         String key = getCacheKey();
         if (TDevice.hasInternet()
                 && (!CacheManager.isReadDataCache(getActivity(), key) || refresh)) {
@@ -219,7 +220,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         mCacheTask = new CacheTask(this).execute(cacheKey);
     }
 
-    protected void sendRequestData(){
+    protected void sendRequestData() {
 
     }
 
@@ -277,6 +278,36 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         return new ResponseHandler(this);
     }
 
+    private void executeParserTask(String data) {
+        cancelParserTask();
+        mParserTask = new ParserTask(this, data);
+        mParserTask.execute();
+    }
+
+    private void cancelParserTask() {
+        if (mParserTask != null) {
+            mParserTask.cancel(true);
+            mParserTask = null;
+        }
+    }
+
+    @Override
+    public void onItemClick(View view) {
+        onItemClick(view, mRecycleView.getChildPosition(view));
+    }
+
+    protected void onItemClick(View view, int position) {
+    }
+
+    @Override
+    public boolean onItemLongClick(View view) {
+        return onItemLongClick(view, mRecycleView.getChildPosition(view));
+    }
+
+    protected boolean onItemLongClick(View view, int position) {
+        return false;
+    }
+
     private static class CacheTask extends AsyncTask<String, Void, ListEntity> {
         private WeakReference<BaseRecycleViewFragment> mInstance;
 
@@ -314,8 +345,6 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         }
     }
 
-
-
     private static class SaveCacheTask extends AsyncTask<Void, Void, Void> {
         private WeakReference<BaseRecycleViewFragment> mInstance;
         private Serializable seri;
@@ -337,7 +366,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         }
     }
 
-    private static class ResponseHandler extends TextHttpResponseHandler{
+    private static class ResponseHandler extends TextHttpResponseHandler {
         private WeakReference<BaseRecycleViewFragment> mInstance;
 
         ResponseHandler(BaseRecycleViewFragment instance) {
@@ -369,7 +398,6 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
             }
         }
     }
-
 
     // Parse model when request data success.
     private static class ParserTask extends AsyncTask<Void, Void, String> {
@@ -418,36 +446,6 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
                 }
             }
         }
-    }
-
-    private void executeParserTask(String data) {
-        cancelParserTask();
-        mParserTask = new ParserTask(this,data);
-        mParserTask.execute();
-    }
-
-    private void cancelParserTask() {
-        if (mParserTask != null) {
-            mParserTask.cancel(true);
-            mParserTask = null;
-        }
-    }
-
-    @Override
-    public void onItemClick(View view) {
-        onItemClick(view, mRecycleView.getChildPosition(view));
-    }
-
-    protected void onItemClick(View view, int position) {
-    }
-
-    @Override
-    public boolean onItemLongClick(View view) {
-        return onItemLongClick(view, mRecycleView.getChildPosition(view));
-    }
-
-    protected boolean onItemLongClick(View view, int position) {
-        return false;
     }
 
 }

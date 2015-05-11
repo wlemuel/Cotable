@@ -14,6 +14,6 @@ import java.util.List;
  */
 public interface ListEntity extends Serializable {
 
-    public List<?> getList();
+    List<?> getList();
 
 }

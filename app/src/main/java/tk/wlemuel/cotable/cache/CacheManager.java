@@ -108,7 +108,7 @@ public class CacheManager {
      * @return
      */
     public static boolean isExistDataCache(Context context, String cachefile) {
-        if(context == null)
+        if (context == null)
             return false;
         boolean exist = false;
         File data = context.getFileStreamPath(cachefile);

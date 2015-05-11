@@ -12,7 +12,7 @@ import java.util.List;
  * @created 2015/05/09
  * @updated 2015/05/09
  */
-public class BlogList extends Entity implements ListEntity{
+public class BlogList extends Entity implements ListEntity {
 
     public static final int CATALOG_LASTEST = 1;
     public static final int CATALOG_RECOMMEND = 2;
@@ -24,6 +24,12 @@ public class BlogList extends Entity implements ListEntity{
     private int pageSize;
     private int blogCount;
 
+    public static BlogList parse(String data) {
+        BlogList bloglist = new BlogList();
+        bloglist.getBloglist().addAll(Blog.parse(data));
+        return bloglist;
+    }
+
     public int getPageSize() {
         return pageSize;
     }
@@ -33,12 +39,6 @@ public class BlogList extends Entity implements ListEntity{
     }
 
     public List<Blog> getBloglist() {
-        return bloglist;
-    }
-
-    public static BlogList parse(String data){
-        BlogList bloglist = new BlogList();
-        bloglist.getBloglist().addAll(Blog.parse(data));
         return bloglist;
     }
 

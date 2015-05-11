@@ -37,9 +37,15 @@ public class BaseListAdapter extends BaseAdapter {
     protected int _loadmoreText;
     protected int _loadFinishText;
     protected int mScreenWidth;
-
+    @SuppressWarnings("rawtypes")
+    protected ArrayList _data = new ArrayList();
     private LayoutInflater mInflater;
     private boolean mLoadMoreHasBg = true;
+
+    public BaseListAdapter() {
+        _loadmoreText = R.string.loading;
+        _loadFinishText = R.string.loading_no_more;
+    }
 
     protected LayoutInflater getLayoutInflater(Context context) {
         if (mInflater == null) {
@@ -53,20 +59,12 @@ public class BaseListAdapter extends BaseAdapter {
         mScreenWidth = width;
     }
 
-    public void setState(int state) {
-        this.state = state;
-    }
-
     public int getState() {
         return this.state;
     }
 
-    @SuppressWarnings("rawtypes")
-    protected ArrayList _data = new ArrayList();
-
-    public BaseListAdapter() {
-        _loadmoreText = R.string.loading;
-        _loadFinishText = R.string.loading_no_more;
+    public void setState(int state) {
+        this.state = state;
     }
 
     @Override
@@ -109,14 +107,14 @@ public class BaseListAdapter extends BaseAdapter {
     }
 
     @SuppressWarnings("rawtypes")
-    public void setData(ArrayList data) {
-        _data = data;
-        notifyDataSetChanged();
+    public ArrayList getData() {
+        return _data == null ? (_data = new ArrayList()) : _data;
     }
 
     @SuppressWarnings("rawtypes")
-    public ArrayList getData() {
-        return _data == null ? (_data = new ArrayList()) : _data;
+    public void setData(ArrayList data) {
+        _data = data;
+        notifyDataSetChanged();
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

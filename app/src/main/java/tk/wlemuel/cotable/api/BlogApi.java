@@ -14,11 +14,11 @@ import tk.wlemuel.cotable.utils.TLog;
  * @created 2015/05/09
  * @updated 2015/05/09
  */
-public class BlogApi extends BaseApi{
+public class BlogApi extends BaseApi {
 
     public static final String TAG = BlogApi.class.getSimpleName();
 
-    public static void getBlogList(int page, AsyncHttpResponseHandler handler){
+    public static void getBlogList(int page, AsyncHttpResponseHandler handler) {
 
         String relativeUrl = RECENT_BLOGS_PAGED.replace(FLAG_PAGEINDEX, Integer.toString(page))
                 .replace(FLAG_PAGESIZE, Integer.toString(AppConfig.DEFAULT_PAGE_SIZE));
@@ -27,7 +27,7 @@ public class BlogApi extends BaseApi{
         ApiHttpClient.get(relativeUrl, handler);
     }
 
-    public static void getRecommendBlogList(int page, AsyncHttpResponseHandler handler){
+    public static void getRecommendBlogList(int page, AsyncHttpResponseHandler handler) {
 
         String partUrl = RECOMMEND_BLOGS_PAGED.replace(FLAG_PAGEINDEX, Integer.toString(page))
                 .replace(FLAG_PAGESIZE, Integer.toString(AppConfig.DEFAULT_PAGE_SIZE));
@@ -35,7 +35,7 @@ public class BlogApi extends BaseApi{
         ApiHttpClient.get(partUrl, handler);
     }
 
-    public static void getBlogDetail(String postId, AsyncHttpResponseHandler handler){
+    public static void getBlogDetail(String postId, AsyncHttpResponseHandler handler) {
         String partUrl = BLOGS_CONTENTS.replace(FLAG_POSTID, postId);
 
         ApiHttpClient.get(partUrl, handler);

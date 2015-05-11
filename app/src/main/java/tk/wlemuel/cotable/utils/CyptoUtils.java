@@ -12,8 +12,8 @@ import javax.crypto.spec.IvParameterSpec;
  * Utils for encryption and decryption.
  *
  * @author Winter Lau
- * @modified by stevelemuel
- * @date 2011-12-26
+ * @updated Steve Lemuel
+ * @created 2011-12-26
  */
 public class CyptoUtils {
 
@@ -35,8 +35,9 @@ public class CyptoUtils {
             // The secretkey ought to longer than 8 bytes.
             Key secretKey = keyFactory.generateSecret(dks);
             Cipher cipher = Cipher.getInstance(ALGORITHM_DES);
-            IvParameterSpec iv = new IvParameterSpec("12345678".getBytes());
-            AlgorithmParameterSpec paramSpec = iv;
+//            IvParameterSpec iv = new IvParameterSpec("12345678".getBytes());
+            AlgorithmParameterSpec paramSpec;
+            paramSpec = new IvParameterSpec("12345678".getBytes());
             cipher.init(Cipher.ENCRYPT_MODE, secretKey, paramSpec);
             byte[] bytes = cipher.doFinal(data.getBytes());
             return byte2hex(bytes);
@@ -62,8 +63,9 @@ public class CyptoUtils {
             // The secretkey ought to longer than 8 bytes.
             Key secretKey = keyFactory.generateSecret(dks);
             Cipher cipher = Cipher.getInstance(ALGORITHM_DES);
-            IvParameterSpec iv = new IvParameterSpec("12345678".getBytes());
-            AlgorithmParameterSpec paramSpec = iv;
+//            IvParameterSpec iv = new IvParameterSpec("12345678".getBytes());
+            AlgorithmParameterSpec paramSpec;
+            paramSpec = new IvParameterSpec("12345678".getBytes());
             cipher.init(Cipher.DECRYPT_MODE, secretKey, paramSpec);
             return new String(cipher.doFinal(hex2byte(data.getBytes())));
         } catch (Exception e) {

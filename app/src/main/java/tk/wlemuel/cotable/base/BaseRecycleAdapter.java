@@ -44,11 +44,8 @@ public abstract class BaseRecycleAdapter
 
     protected int _loadmoreText;
     protected int _loadFinishText;
-
-    private LayoutInflater mInflater;
-
     protected List mData;
-
+    private LayoutInflater mInflater;
     private WeakReference<OnItemClickListener> mListener;
     private WeakReference<OnItemLongClickListener> mLongListener;
     private View mHeaderView;
@@ -104,64 +101,64 @@ public abstract class BaseRecycleAdapter
         return pos;
     }
 
-    public Object getItem(int arg){
-        if(arg < 0) return null;
-        if(mData.size() > arg) return mData.get(arg);
+    public Object getItem(int arg) {
+        if (arg < 0) return null;
+        if (mData.size() > arg) return mData.get(arg);
 
         return null;
     }
 
-    public void addData(List data){
+    public void addData(List data) {
         mData.addAll(data);
         notifyDataSetChanged();
     }
 
-    public List getData(){
-        if(mData == null) mData = new ArrayList();
+    public List getData() {
+        if (mData == null) mData = new ArrayList();
 
         return mData;
     }
 
-    public void addItem(int pos, Object obj){
+    public void addItem(int pos, Object obj) {
         getData();
         mData.add(pos, obj);
         notifyDataSetChanged();
     }
 
-    public void addItem(Object obj){
+    public void addItem(Object obj) {
         getData();
         mData.add(obj);
         notifyDataSetChanged();
     }
 
-    public void removeItem(Object obj){
-        if(mData != null){
+    public void removeItem(Object obj) {
+        if (mData != null) {
             mData.remove(obj);
             notifyDataSetChanged();
         }
     }
 
-    public void removeItem(int pos){
-        if(mData != null){
+    public void removeItem(int pos) {
+        if (mData != null) {
             mData.remove(pos);
             notifyDataSetChanged();
         }
     }
 
-    public void clear(){
+    public void clear() {
         mData.clear();
         notifyDataSetChanged();
     }
 
-    public void setLoadmoreText(int text){
+    public void setLoadmoreText(int text) {
         _loadmoreText = text;
     }
 
-    public void setLoadFinishText(int text){
+    public void setLoadFinishText(int text) {
         _loadFinishText = text;
     }
 
-    protected boolean loadMoreHasBg(){
+    protected boolean loadMoreHasBg() {
         return true;
     }
 
@@ -173,15 +170,15 @@ public abstract class BaseRecycleAdapter
         this.mLongListener = new WeakReference<OnItemLongClickListener>(listener);
     }
 
-    public void setHeaderView(View v){
+    public void setHeaderView(View v) {
         mHeaderView = v;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(position == 0 && hasHeader())
+        if (position == 0 && hasHeader())
             return TYPE_HEADER;
-        if(position == getItemCount() - 1 && hasFooter())
+        if (position == getItemCount() - 1 && hasFooter())
             return TYPE_FOOTER;
 
         return super.getItemViewType(position);
@@ -190,29 +187,29 @@ public abstract class BaseRecycleAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ViewHolder vh;
-        if(viewType == TYPE_FOOTER){
+        if (viewType == TYPE_FOOTER) {
             View v = getLayoutInflater(parent.getContext())
                     .inflate(R.layout.list_cell_footer, null);
             vh = new FooterViewHolder(viewType, v);
-        } else if (viewType == TYPE_HEADER){
-            if(mHeaderView == null)
+        } else if (viewType == TYPE_HEADER) {
+            if (mHeaderView == null)
                 throw new RuntimeException("Header view is null");
             vh = new HeaderViewHolder(viewType, mHeaderView);
         } else {
             final View itemView = onCreateItemView(parent, viewType);
-            if(itemView != null){
-                if(mListener != null){
+            if (itemView != null) {
+                if (mListener != null) {
                     itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             OnItemClickListener oil = mListener.get();
-                            if(oil != null)
+                            if (oil != null)
                                 oil.onItemClick(itemView);
                         }
                     });
                 }
 
-                if(mLongListener != null){
+                if (mLongListener != null) {
                     itemView.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
                         public boolean onLongClick(View v) {
@@ -233,11 +230,11 @@ public abstract class BaseRecycleAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if ((getItemViewType(position) == TYPE_HEADER && position == 0)
-                || holder instanceof HeaderViewHolder){
+                || holder instanceof HeaderViewHolder) {
             TLog.log("Bind head view: " + position + " " + holder.viewType);
             onBindHeadViewHolder(holder, position);
-        } else if((getItemViewType(position) == TYPE_FOOTER && position == getItemCount() - 1)
-                || holder instanceof FooterViewHolder){
+        } else if ((getItemViewType(position) == TYPE_FOOTER && position == getItemCount() - 1)
+                || holder instanceof FooterViewHolder) {
             TLog.log("Bind foot view: " + position + " " + holder.viewType);
             onBindFootViewHolder(holder, position);
         } else {
@@ -246,19 +243,19 @@ public abstract class BaseRecycleAdapter
         }
     }
 
-    protected void onBindHeadViewHolder(ViewHolder holder, int position){
+    protected void onBindHeadViewHolder(ViewHolder holder, int position) {
 
     }
 
-    protected void onBindItemViewHolder(ViewHolder holder, int position){
+    protected void onBindItemViewHolder(ViewHolder holder, int position) {
 
     }
 
-    protected void onBindFootViewHolder(ViewHolder holder, int position){
+    protected void onBindFootViewHolder(ViewHolder holder, int position) {
         FooterViewHolder vh = (FooterViewHolder) holder;
-        if(!loadMoreHasBg()) vh.mLoadMore.setBackground(null);
+        if (!loadMoreHasBg()) vh.mLoadMore.setBackground(null);
 
-        switch (getState()){
+        switch (getState()) {
             case STATE_LOAD_MORE:
                 vh.mLoadMore.setVisibility(View.VISIBLE);
                 vh.mProgressBar.setVisibility(View.VISIBLE);
@@ -280,9 +277,9 @@ public abstract class BaseRecycleAdapter
                 vh.mLoadMore.setVisibility(View.VISIBLE);
                 vh.mProgressBar.setVisibility(View.GONE);
                 vh.mTextView.setVisibility(View.VISIBLE);
-                if(TDevice.hasInternet()){
+                if (TDevice.hasInternet()) {
                     vh.mTextView.setText(R.string.loading_error);
-                }else{
+                } else {
                     vh.mTextView.setText(R.string.loading_no_network);
                 }
                 break;
@@ -298,14 +295,6 @@ public abstract class BaseRecycleAdapter
 
     protected abstract ViewHolder onCreateItemViewHolder(View view, int viewType);
 
-    public interface OnItemClickListener {
-        void onItemClick(View v);
-    }
-
-    public interface OnItemLongClickListener {
-        boolean onItemLongClick(View v);
-    }
-
     protected LayoutInflater getLayoutInflater(Context context) {
         if (mInflater == null)
             mInflater = (LayoutInflater.from(context));
@@ -319,6 +308,14 @@ public abstract class BaseRecycleAdapter
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View v);
+    }
+
+    public interface OnItemLongClickListener {
+        boolean onItemLongClick(View v);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -49,25 +49,6 @@ public class BaseApplication extends Application {
             isAtLeastGB = true;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        // initialize the context and resources.
-        _context = getApplicationContext();
-        _resources = _context.getResources();
-
-
-        init();
-    }
-
-    /**
-     * Other init actions.
-     */
-    protected void init() {
-
-    }
-
     /**
      * Fetch the context of this application.
      *
@@ -77,7 +58,6 @@ public class BaseApplication extends Application {
         return (BaseApplication) _context;
     }
 
-
     /**
      * Fetch the resource of this application.
      *
@@ -86,7 +66,6 @@ public class BaseApplication extends Application {
     public static Resources resources() {
         return _resources;
     }
-
 
     /**
      * Get the persist perferences.
@@ -174,7 +153,6 @@ public class BaseApplication extends Application {
         return resources().getString(resId, args);
     }
 
-
     /**
      * Show the toast for the current application.
      *
@@ -246,6 +224,25 @@ public class BaseApplication extends Application {
      */
     public static void showToastShort(String message) {
         showToastShort(message, 0);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        // initialize the context and resources.
+        _context = getApplicationContext();
+        _resources = _context.getResources();
+
+
+        init();
+    }
+
+    /**
+     * Other init actions.
+     */
+    protected void init() {
+
     }
 
 }

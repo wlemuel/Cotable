@@ -7,7 +7,7 @@ import java.util.TimeZone;
  * Utils for handling the timezone issues.
  *
  * @author HuangWenwei
- * @modified by stevelemuel
+ * @updated Steve Lemuel
  * @created 2014-07-31
  */
 public class TimeZoneUtil {

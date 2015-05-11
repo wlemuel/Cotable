@@ -10,7 +10,13 @@ import android.widget.TextView;
 import tk.wlemuel.cotable.R;
 
 /**
- * Created by stevelemuel on 3/28/15.
+ * BaseActivity
+ *
+ * @author Steve Lemuel
+ * @version 0.1
+ * @desc BaseActivity
+ * @created 2015/05/11
+ * @updated 2015/05/11
  */
 public abstract class BaseActivity extends ActionBarActivity {
 
@@ -23,32 +29,36 @@ public abstract class BaseActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected boolean hasActionBar(){
+    protected boolean hasActionBar() {
         return true;
     }
 
-    protected abstract int getLayoutRes();
-
-    protected View inflateView(int resId){
-        return mInflater.inflate(resId, null);
-    }
-
-    protected int getActionBarTitle(){
-        return R.string.app_name;
-    }
-
-    protected boolean hasBackButton(){
-        return false;
-    }
-
-    protected int getActionBarCustomView(){
+    protected int getLayoutRes() {
         return 0;
     }
 
-    protected abstract void init(Bundle savedInstanceState);
+    protected View inflateView(int resId) {
+        return mInflater.inflate(resId, null);
+    }
 
-    protected void initActionBar(Toolbar actionBar){
-        if(actionBar == null) return;
+    protected int getActionBarTitle() {
+        return R.string.app_name;
+    }
+
+    protected boolean hasBackButton() {
+        return false;
+    }
+
+    protected int getActionBarCustomView() {
+        return 0;
+    }
+
+    protected void init(Bundle savedInstanceState) {
+
+    }
+
+    protected void initActionBar(Toolbar actionBar) {
+        if (actionBar == null) return;
 
         setSupportActionBar(actionBar);
 
