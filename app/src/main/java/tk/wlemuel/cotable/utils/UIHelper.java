@@ -1,5 +1,6 @@
 package tk.wlemuel.cotable.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -26,6 +27,21 @@ public class UIHelper {
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra("blog_id", blogId);
         context.startActivity(intent);
+    }
+
+    /**
+     * Call the system application with shares.
+     *
+     * @param context context
+     * @param title   share title
+     * @param url     share url
+     */
+    public static void showShareMore(Activity context, final String title, final String url) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Share: " + title);
+        intent.putExtra(Intent.EXTRA_TEXT, title + " " + url);
+        context.startActivity(Intent.createChooser(intent, "Choose to share"));
     }
 
 
