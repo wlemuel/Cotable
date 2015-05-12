@@ -16,7 +16,8 @@ import tk.wlemuel.cotable.model.BlogList;
 public enum BlogTab {
     LASTEST(0, BlogList.CATALOG_LASTEST, R.string.tab_title_blog_latest, BlogFragment.class),
     RECOMMEND(1, BlogList.CATALOG_RECOMMEND, R.string.tab_title_blog_recommend,
-            BlogFragment.class);
+            BlogFragment.class),
+    NEWS(2, BlogList.CATALOG_RECOMMEND, R.string.tab_title_news_latest, BlogFragment.class);
 
     private Class<?> clz;
     private int idx;
