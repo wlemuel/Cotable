@@ -1,4 +1,4 @@
-package tk.wlemuel.cotable.common;
+package tk.wlemuel.cotable.core;
 
 import android.annotation.TargetApi;
 import android.content.SharedPreferences.Editor;
@@ -42,7 +42,8 @@ public class AppContext extends BaseApplication {
     private static final String KEY_BLOG_LASTEST = "KEY_BLOG_LASTEST";
     private static final String KEY_BLOG_RECOMMENT = "KEY_BLOG_RECOMMENT";
     private static final String KEY_NEWS_LASTEST = "KEY_NEWS_LASTEST";
-    private static AppContext _instance;
+    private static final String KEY_AUTOLOAD_NEXT_CONTENTS = "KEY_AUTOLOAD_NEXT_CONTENTS";
+    private static AppContext mInstance;
     private String saveImagePath;
 
     public static int getSoftKeyboardHeight() {
@@ -62,6 +63,16 @@ public class AppContext extends BaseApplication {
     public static void setLoadImage(boolean flag) {
         Editor editor = getPreferences().edit();
         editor.putBoolean(KEY_LOAD_IMAGE, flag);
+        apply(editor);
+    }
+
+    public static boolean isAutoloadNextContents() {
+        return getPreferences().getBoolean(KEY_AUTOLOAD_NEXT_CONTENTS, true);
+    }
+
+    public static void setAutoloadNextContents(boolean flag) {
+        Editor editor = getPreferences().edit();
+        editor.putBoolean(KEY_AUTOLOAD_NEXT_CONTENTS, flag);
         apply(editor);
     }
 
@@ -113,7 +124,7 @@ public class AppContext extends BaseApplication {
     protected void init() {
         super.init();
 
-        _instance = this;
+        mInstance = this;
 
         init2();
 

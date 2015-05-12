@@ -1,6 +1,6 @@
 package tk.wlemuel.cotable.api;
 
-import tk.wlemuel.cotable.common.AppConfig;
+import tk.wlemuel.cotable.core.AppConfig;
 
 /**
  * BaseApi

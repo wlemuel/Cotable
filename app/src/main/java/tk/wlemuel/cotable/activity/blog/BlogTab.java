@@ -1,7 +1,7 @@
 package tk.wlemuel.cotable.activity.blog;
 
 import tk.wlemuel.cotable.R;
-import tk.wlemuel.cotable.activity.blog.fragment.BlogFragment;
+import tk.wlemuel.cotable.activity.blog.fragment.BlogListFragment;
 import tk.wlemuel.cotable.model.BlogList;
 
 /**
@@ -14,10 +14,10 @@ import tk.wlemuel.cotable.model.BlogList;
  * @updated 2015/05/10
  */
 public enum BlogTab {
-    LASTEST(0, BlogList.CATALOG_LASTEST, R.string.tab_title_blog_latest, BlogFragment.class),
+    LASTEST(0, BlogList.CATALOG_LASTEST, R.string.tab_title_blog_latest, BlogListFragment.class),
     RECOMMEND(1, BlogList.CATALOG_RECOMMEND, R.string.tab_title_blog_recommend,
-            BlogFragment.class),
-    NEWS(2, BlogList.CATALOG_RECOMMEND, R.string.tab_title_news_latest, BlogFragment.class);
+            BlogListFragment.class),
+    NEWS(2, BlogList.CATALOG_RECOMMEND, R.string.tab_title_news_latest, BlogListFragment.class);
 
     private Class<?> clz;
     private int idx;

@@ -7,8 +7,7 @@ public abstract class BaseTabFragment extends BaseFragment {
     public BaseTabFragment() {
     }
 
-    public final void a(TabChangedListener listener) {
-
+    public final void addListener(TabChangedListener listener) {
         mListener = listener;
     }
 

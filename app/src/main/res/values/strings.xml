@@ -1,0 +1,65 @@
+<resources>
+    <!--Application Information-->
+    <string name="app_name">码厩</string>
+    <string name="app_author">激荡的天石</string>
+    <string name="app_author_short">wlemuel</string>
+    <string name="app_author_email">wlemuel@hotmail.com</string>
+    <string name="app_author_qq">1078707962</string>
+    <string name="app_author_qq_mail">1078707962@qq.com</string>
+    <string name="app_author_url">http://wlemuel.tk</string>
+
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+
+    <string-array name="menu_array">
+        <item>Java</item>
+        <item>C++</item>
+        <item>Python</item>
+        <item>Ruby</item>
+        <item>PHP</item>
+        <item>Objective-C</item>
+        <item>Perl</item>
+    </string-array>
+
+    <string name="blog_item_title_default">JAVA异常处理、常用类、反射、集合</string>
+    <string name="blog_item_desc_default">想到用python发送邮件主要是服务器 有时候会产生coredump文件 ，然后因为脚本重启原因，服务器coredump产生后会重启但是没有主动通知开发人员想了下可以写个脚本一旦产生coredump文件就可以发送邮件给开发者让其立马知道下面只介绍简单的发送脚本如果需要在生产环境用起来 还需要按要求修...</string>
+    <string name="blog_item_author_default">@string/app_author</string>
+    <string name="blog_item_date_default">2015-04-19 14:52</string>
+    <string name="blog_item_comments_default">评论 (%d)</string>
+    <string name="blog_item_reading_default">阅读 (%d)</string>
+    <string name="blog_item_posted_default">发布时间: </string>
+    <string name="blog_item_hint_author">作者 :</string>
+
+    <!--Empty Layout-->
+    <string name="empty_view_click_to_refresh">点击屏幕, 重新加载</string>
+    <string name="empty_view_no_data">暂无内容</string>
+    <string name="empty_view_loading">加载中...</string>
+    <string name="empty_view_network_error">没有网络连接</string>
+
+    <!--Time friendly Show-->
+    <string name="minutes_ago">分钟前</string>
+    <string name="hours_ago">小时前</string>
+    <string name="days_ago">天前</string>
+    <string name="a_minute_ago">1分钟前</string>
+    <string name="an_hour_ago">1小时前</string>
+    <string name="yesterday">昨天</string>
+    <string name="the_day_before_yesterday">前天</string>
+
+    <string name="loading">加载中...</string>
+    <string name="loading_no_more">没有更多数据</string>
+    <string name="loading_error">网络不稳定，加载出错</string>
+    <string name="loading_no_network">没有可用的网络</string>
+
+    <string name="tab_title_blog_latest">最新博客</string>
+    <string name="tab_title_blog_recommend">推荐阅读</string>
+    <string name="tab_title_news_latest">最新资讯</string>
+
+    <string name="actionbar_title_setting">设置</string>
+    <string name="actionbar_title_about">关于</string>
+    <string name="actionbar_title_blogdetail">博客内容</string>
+    <string name="action_menu_exit">退出</string>
+    <string name="action_menu_favor">收藏</string>
+    <string name="action_menu_search">搜索</string>
+    <string name="action_menu_settings">设置</string>
+    <string name="action_menu_user">用户</string>
+</resources>

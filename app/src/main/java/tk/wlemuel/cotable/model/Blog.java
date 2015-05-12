@@ -113,7 +113,8 @@ public class Blog extends Base {
                                         String[] parts = blog.getUrl().toString().split
                                                 (BLOG_LINK_DILIMITER);
                                         if (parts.length > 0) {
-                                            blog.setPostId(parts[1].substring(0, parts.length - 5));
+                                            blog.setPostId(parts[1].substring(0, parts[1].length() -
+                                                    5));
                                         }
                                     }
                                 } catch (Exception e) {

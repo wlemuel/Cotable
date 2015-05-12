@@ -2,7 +2,7 @@ package tk.wlemuel.cotable.utils;
 
 import android.util.Log;
 
-import tk.wlemuel.cotable.common.AppConfig;
+import tk.wlemuel.cotable.core.AppConfig;
 
 
 public class TLog {

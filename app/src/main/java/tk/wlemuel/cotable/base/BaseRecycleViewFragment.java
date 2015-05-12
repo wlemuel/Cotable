@@ -21,7 +21,7 @@ import java.util.List;
 
 import tk.wlemuel.cotable.R;
 import tk.wlemuel.cotable.cache.CacheManager;
-import tk.wlemuel.cotable.common.AppContext;
+import tk.wlemuel.cotable.core.AppContext;
 import tk.wlemuel.cotable.model.BlogList;
 import tk.wlemuel.cotable.model.ListEntity;
 import tk.wlemuel.cotable.ui.decorator.DividerItemDecoration;
@@ -46,21 +46,36 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
 
     public static final String BUNDLE_KEY_CATALOG = "BUNDLE_KEY_CATALOG";
 
+    // the swipe refresh layout
     protected MySwipeRefreshLayout mSwipeRefresh;
+
+    // the recycle view
     protected FixedRecyclerView mRecycleView;
+
+    // the linearlayoutmanager
     protected LinearLayoutManager mLayoutManager;
+
+    // the basic recycle adapter
     protected BaseRecycleAdapter mAdapter;
+
+    // the empty layout when loading data with error state
     protected EmptyLayout mErrorLayout;
+
 
     protected int mStoreEmptyState = -1;
     protected String mStoreEmptyMessage;
 
+
     protected int mCurrentPage = 0;
     protected int mCatalog = BlogList.CATALOG_LASTEST;
 
+    // Task for handling the cache.
     private AsyncTask<String, Void, ListEntity> mCacheTask;
+
+    // Task for parse the data got from the internet.
     private ParserTask mParserTask;
 
+    // Handle the scroll events.
     private RecyclerView.OnScrollListener mScrollListener = new RecyclerView.OnScrollListener() {
 
         @Override
@@ -68,15 +83,33 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
             super.onScrolled(recyclerView, dx, dy);
             int lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
             int totalItemCount = mLayoutManager.getItemCount();
+
+            // when scroll to the last item but four, load more data (automatically if the
+            // autoload is enabled.
             if (lastVisibleItem >= totalItemCount - 4 && dy > 0) {
                 if (mState == STATE_NONE && mAdapter != null
-                        && mAdapter.getDataSize() > 0) {
+                        && mAdapter.getDataSize() > 0 && isAutoload()) {
                     loadMore();
                 }
             }
         }
     };
 
+
+    /**
+     * Judge whether loading the next content automaticallly.
+     *
+     * @return true(default) if autoload mode, false otherwise.
+     */
+    protected boolean isAutoload() {
+        return AppContext.isAutoloadNextContents();
+    }
+
+    /**
+     * Get the layout Resources.
+     *
+     * @return the layout id
+     */
     protected int getLayoutRes() {
         return R.layout.fragment_swipe_refresh_recycleview;
     }
@@ -89,12 +122,18 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
         View view = inflater.inflate(getLayoutRes(), container, false);
         initView(view);
         return view;
     }
 
+    /**
+     * Init the view
+     *
+     * @param view the view
+     */
     protected void initView(View view) {
         mErrorLayout = (EmptyLayout) view.findViewById(R.id.error_layout);
         mErrorLayout.setOnLayoutClickListener(new View.OnClickListener() {

@@ -21,7 +21,7 @@ import java.util.List;
 import tk.wlemuel.cotable.R;
 import tk.wlemuel.cotable.adapter.DrawerLeftMenuAdapter;
 import tk.wlemuel.cotable.base.BaseActivity;
-import tk.wlemuel.cotable.common.AppConfig;
+import tk.wlemuel.cotable.core.AppConfig;
 import tk.wlemuel.cotable.model.DrawerLeftMenuModel;
 
 

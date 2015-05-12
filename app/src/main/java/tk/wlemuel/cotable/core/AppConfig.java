@@ -1,4 +1,4 @@
-package tk.wlemuel.cotable.common;
+package tk.wlemuel.cotable.core;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -23,8 +23,8 @@ public class AppConfig {
 
     public final static String TAG = AppConfig.class.getSimpleName();
 
-    public final static String APP_CONFIG = "app_config";
-    public final static String APP_NAME = "Cotadle";
+    public final static String APP_CONFIG = "config";
+    public final static String APP_NAME = "Cotable";
     public final static String UTF8 = "utf-8";
     public final static int DEFAULT_PAGE_SIZE = 20;
 
@@ -33,26 +33,25 @@ public class AppConfig {
     public final static String SAVE_IMAGE_PATH = "SAVE_IMAGE_PATH";
     public final static String DEFAULT_IMAGE_PATH = Environment.getExternalStorageDirectory() +
             File.separator + APP_NAME + File.separator + DOWNLOAD_IMAGE_DIR + File.separator;
-    public final static String DFAULT_CACHE_PATH = Environment.getExternalStorageDirectory() +
-            File.separator + APP_NAME + File.separator + "cache" + File.separator;
 
     public final static String CONF_LOAD_IMAGE = "CONF_LOAD_IMAGE";
     public final static String CONF_PAGE_SIZE = "CONF_PAGE_SIZE";
 
     // Other configurations
     public final static int SEARCH_ICON_SIZE_PATCH = 20;
-    private static AppConfig _appConfig;
-    private Context _context;
+
+    private static AppConfig appConfig;
+    private Context mContext;
 
     public static AppConfig getAppConfig() {
-        if (_appConfig == null) _appConfig = new AppConfig();
+        if (appConfig == null) appConfig = new AppConfig();
 
-        return _appConfig;
+        return appConfig;
     }
 
     public static AppConfig getAppConfig(Context context) {
-        getAppConfig()._context = context;
-        return _appConfig;
+        getAppConfig().mContext = context;
+        return appConfig;
     }
 
     public static SharedPreferences getSharedPreferences(Context context) {
@@ -77,7 +76,7 @@ public class AppConfig {
         FileInputStream fis = null;
         Properties props = new Properties();
 
-        File dirConf = _context.getDir(APP_CONFIG, Context.MODE_MULTI_PROCESS);
+        File dirConf = mContext.getDir(APP_CONFIG, Context.MODE_MULTI_PROCESS);
         try {
             fis = new FileInputStream(dirConf.getPath() + File.separator + APP_CONFIG);
             props.load(fis);
@@ -97,7 +96,7 @@ public class AppConfig {
     private void setProps(Properties props) {
         FileOutputStream fos = null;
         try {
-            File dirConf = _context.getDir(APP_CONFIG, Context.MODE_MULTI_PROCESS);
+            File dirConf = mContext.getDir(APP_CONFIG, Context.MODE_MULTI_PROCESS);
             File conf = new File(dirConf, APP_CONFIG);
             fos = new FileOutputStream(conf);
 

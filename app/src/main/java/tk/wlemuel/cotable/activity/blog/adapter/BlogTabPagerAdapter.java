@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import tk.wlemuel.cotable.activity.blog.BlogTab;
-import tk.wlemuel.cotable.activity.blog.fragment.BlogFragment;
+import tk.wlemuel.cotable.activity.blog.fragment.BlogListFragment;
 import tk.wlemuel.cotable.base.BaseTabFragment;
 import tk.wlemuel.cotable.ui.pagertab.SlidingTabPagerAdapter;
 
@@ -54,10 +54,10 @@ public final class BlogTabPagerAdapter extends SlidingTabPagerAdapter {
                 }
             }
 
-            tabFragment.a(this);
+            tabFragment.addListener(this);
             if (!tabFragment.isAdded()) {
                 Bundle args = new Bundle();
-                args.putInt(BlogFragment.BUNDLE_KEY_CATALOG,
+                args.putInt(BlogListFragment.BUNDLE_KEY_CATALOG,
                         tab.getCatalog());
                 tabFragment.setArguments(args);
             }

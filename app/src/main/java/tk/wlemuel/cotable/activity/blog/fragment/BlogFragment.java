@@ -1,18 +1,20 @@
 package tk.wlemuel.cotable.activity.blog.fragment;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.TextView;
 
 import java.io.Serializable;
 
-import tk.wlemuel.cotable.activity.blog.adapter.BlogAdapter;
+import tk.wlemuel.cotable.R;
 import tk.wlemuel.cotable.api.BlogApi;
-import tk.wlemuel.cotable.base.BaseRecycleAdapter;
-import tk.wlemuel.cotable.base.BaseRecycleViewFragment;
-import tk.wlemuel.cotable.common.AppContext;
-import tk.wlemuel.cotable.model.Blog;
-import tk.wlemuel.cotable.model.BlogList;
-import tk.wlemuel.cotable.model.ListEntity;
+import tk.wlemuel.cotable.base.BaseDetailFragment;
+import tk.wlemuel.cotable.model.BlogDetail;
+import tk.wlemuel.cotable.model.Entity;
+import tk.wlemuel.cotable.ui.empty.EmptyLayout;
 import tk.wlemuel.cotable.utils.TLog;
 
 /**
@@ -21,56 +23,88 @@ import tk.wlemuel.cotable.utils.TLog;
  * @author Steve Lemuel
  * @version 0.1
  * @desc BlogFragment
- * @created 2015/05/08
- * @updated 2015/05/08
+ * @created 2015/05/11
+ * @updated 2015/05/11
  */
-public class BlogFragment extends BaseRecycleViewFragment {
+public class BlogFragment extends BaseDetailFragment {
 
+    public static final String BUNDLE_KEY_BLOG_ID = "BLOG_ID";
     protected static final String TAG = BlogFragment.class.getSimpleName();
-
-    private static final String CACHE_KEY_PREFIX = "BLOG_LIST";
-
-    private static final long MAX_CACAHE_TIME = 12 * 3600 * 1000;
+    private static final String BLOG_CACHE_KEY = "blog_";
+    private TextView mTvSource;
+    private String _blogId;
+    private BlogDetail _blogDetail;
 
     @Override
-    protected boolean requestDataFromNetWork() {
-        return System.currentTimeMillis()
-                - AppContext.getRefreshTime(getCacheKey()) > MAX_CACAHE_TIME;
+    public void onClick(View v) {
+        super.onClick(v);
+        final int id = v.getId();
+        if (id == R.id.ib_zoomin) {
+            mWebView.zoomIn();
+        } else if (id == R.id.ib_zoomout) {
+            mWebView.zoomOut();
+        }
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_blog_detail, container, false);
+
+        Bundle args = getArguments();
+        if (args != null) {
+            _blogId = (String) args.get(BUNDLE_KEY_BLOG_ID);
+        }
+
+        if (_blogId == null || _blogId.equals("")) {
+            _blogId = "4495118";
+        }
+
+        initViews(view);
+
+        return view;
+    }
+
+    private void initViews(View view) {
+        mEmptyLayout = (EmptyLayout) view.findViewById(R.id.error_layout);
+        mWebView = (WebView) view.findViewById(R.id.webview);
+
+        initWebView(mWebView);
+
+        view.findViewById(R.id.ib_zoomin).setOnClickListener(this);
+        view.findViewById(R.id.ib_zoomout).setOnClickListener(this);
     }
 
     @Override
-    protected BaseRecycleAdapter getListAdapter() {
-        return new BlogAdapter();
-    }
-
-    @Override
-    protected String getCacheKeyPrefix() {
-        return CACHE_KEY_PREFIX;
-    }
-
-    @Override
-    protected ListEntity parseList(String data) throws Exception {
-        BlogList list = BlogList.parse(data);
-        TLog.log("shit", data);
-        return list;
-    }
-
-    @Override
-    protected ListEntity readList(Serializable seri) {
-        return ((BlogList) seri);
+    protected String getCacheKey() {
+        return new StringBuilder(BLOG_CACHE_KEY).append(_blogId).toString();
     }
 
     @Override
     protected void sendRequestData() {
-        BlogApi.getBlogList(mCurrentPage + 1, getResponseHandler());
+        mEmptyLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
+        BlogApi.getBlogDetail(_blogId, mHandler);
     }
 
     @Override
-    public void onItemClick(View v, int position) {
-        Blog blog = (Blog) mAdapter.getItem(position);
-        if (blog != null) {
-            Toast toast = Toast.makeText(getActivity(), blog.getTitle(), Toast.LENGTH_SHORT);
-            toast.show();
-        }
+    protected Entity parseData(String data) throws Exception {
+        return BlogDetail.parse(data);
+    }
+
+    @Override
+    protected Entity readData(Serializable seri) {
+        return (BlogDetail) seri;
+    }
+
+    @Override
+    protected void executeOnLoadDataSuccess(Entity entity) {
+        _blogDetail = (BlogDetail) entity;
+        fillWebViewBody();
+    }
+
+    private void fillWebViewBody() {
+        mWebView.setWebViewClient(mWebViewClient);
+        TLog.log("webview", _blogDetail.getBody());
+        mWebView.loadDataWithBaseURL(null, _blogDetail.getBody(), "text/html", "utf-8", null);
     }
 }

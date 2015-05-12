@@ -11,14 +11,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".common.AppContext"
+        android:name=".core.AppContext"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,9 +27,18 @@
             </intent-filter>
         </activity>
 
-        <!--<activity android:name=".activity.MainActivity">-->
+        <activity android:name=".activity.MainActivity">
 
-        <!--</activity>-->
+        </activity>
+
+        <activity android:name=".activity.blog.view.DetailActivity">
+
+        </activity>
+
+        <activity android:name=".activity.common.SimpleBackActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

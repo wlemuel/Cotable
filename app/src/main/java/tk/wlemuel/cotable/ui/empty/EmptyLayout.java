@@ -16,7 +16,7 @@ import tk.wlemuel.cotable.utils.TDevice;
 
 
 public class EmptyLayout extends LinearLayout implements
-        View.OnClickListener {// , ISkinUIObserver {
+        View.OnClickListener {
 
     public static final int HIDE_LAYOUT = 4;
     public static final int NETWORK_ERROR = 1;
@@ -31,7 +31,7 @@ public class EmptyLayout extends LinearLayout implements
     private int mErrorState;
     private RelativeLayout mLayout;
     private String strNoDataContent = "";
-    private TextView tv;
+    private TextView mTv;
     private Animation mAnim;
 
     public EmptyLayout(Context context) {
@@ -46,10 +46,13 @@ public class EmptyLayout extends LinearLayout implements
         init();
     }
 
+    /**
+     * init the view.
+     */
     private void init() {
         View view = View.inflate(context, R.layout.view_error_layout, null);
         img = (ImageView) view.findViewById(R.id.error_layout_img);
-        tv = (TextView) view.findViewById(R.id.error_layout_tv);
+        mTv = (TextView) view.findViewById(R.id.error_layout_tv);
         mLayout = (RelativeLayout) view.findViewById(R.id.error_layout_main);
         animProgress = (ProgressBar) view.findViewById(R.id.error_layout_animProgress);
         mAnim = AnimationUtils.loadAnimation(context, R.anim.progressbar);
@@ -66,6 +69,7 @@ public class EmptyLayout extends LinearLayout implements
                 }
             }
         });
+
         addView(view);
     }
 
@@ -98,21 +102,19 @@ public class EmptyLayout extends LinearLayout implements
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        // MyApplication.getInstance().getAtSkinObserable().registered(this);
-//		onSkinChanged();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        // MyApplication.getInstance().getAtSkinObserable().unregistered(this);
-    }
-
-    public void setDayNight(boolean flag) {
     }
 
     public void setErrorMessage(String msg) {
-        tv.setText(msg);
+        mTv.setText(msg);
+    }
+
+    public void setErrorMessage(int msg) {
+        if (msg != 0) mTv.setText(msg);
     }
 
     public void setErrorType(int i) {
@@ -120,13 +122,12 @@ public class EmptyLayout extends LinearLayout implements
         switch (i) {
             case NETWORK_ERROR:
                 mErrorState = NETWORK_ERROR;
-                // img.setBackgroundDrawable(SkinsUtil.getDrawable(context,"pagefailed_bg"));
                 if (TDevice.hasInternet()) {
-                    tv.setText(R.string.empty_view_click_to_refresh);
+                    mTv.setText(R.string.empty_view_click_to_refresh);
                     img.setBackgroundResource(R.drawable.pagefailed_bg);
                 } else {
-                    tv.setText(R.string.empty_view_click_to_refresh);
-//				img.setBackgroundResource(R.drawable.page_icon_network);
+                    mTv.setText(R.string.empty_view_network_error);
+                    img.setBackgroundResource(R.drawable.page_icon_network);
                 }
                 img.setVisibility(View.VISIBLE);
                 animProgress.setVisibility(View.GONE);
@@ -139,13 +140,11 @@ public class EmptyLayout extends LinearLayout implements
                 animProgress.clearAnimation();
                 animProgress.startAnimation(mAnim);
                 img.setVisibility(View.GONE);
-//			tv.setText(R.string.error_view_loading);
+                mTv.setText(R.string.loading);
                 clickEnable = false;
                 break;
             case NODATA:
                 mErrorState = NODATA;
-                // img.setBackgroundDrawable(SkinsUtil.getDrawable(context,"page_icon_empty"));
-//			img.setBackgroundResource(R.drawable.page_icon_empty);
                 img.setVisibility(View.VISIBLE);
                 animProgress.setVisibility(View.GONE);
                 animProgress.clearAnimation();
@@ -158,8 +157,6 @@ public class EmptyLayout extends LinearLayout implements
                 break;
             case NODATA_ENABLE_CLICK:
                 mErrorState = NODATA_ENABLE_CLICK;
-//			img.setBackgroundResource(R.drawable.page_icon_empty);
-                // img.setBackgroundDrawable(SkinsUtil.getDrawable(context,"page_icon_empty"));
                 img.setVisibility(View.VISIBLE);
                 animProgress.setVisibility(View.GONE);
                 animProgress.clearAnimation();
@@ -181,9 +178,9 @@ public class EmptyLayout extends LinearLayout implements
 
     public void setTvNoDataContent() {
         if (!strNoDataContent.equals(""))
-            tv.setText(strNoDataContent);
+            mTv.setText(strNoDataContent);
         else
-            tv.setText(R.string.empty_view_no_data);
+            mTv.setText(R.string.empty_view_no_data);
     }
 
     @Override
@@ -194,8 +191,8 @@ public class EmptyLayout extends LinearLayout implements
     }
 
     public String getMessage() {
-        if (tv != null) {
-            return tv.getText().toString();
+        if (mTv != null) {
+            return mTv.getText().toString();
         }
         return "";
     }
