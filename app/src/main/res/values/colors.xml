@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Common Configuration-->
+    <color name="main">#FF4291DA</color>
+    <color name="main_green">#40AA53</color>
+    <color name="main_gray">#9A9A9A</color>
+    <color name="main_black">#353535</color>
+    <color name="main_purple">#576B95</color>
+    <color name="text_color_black">#ff000000</color>
+    <color name="text_color_white">#ffffffff</color>
+    <color name="text_color_hint">#9A9A9A</color>
+    <color name="text_color">@color/text_color_black</color>
+    <color name="transparent">#00000000</color>
+    <color name="window_background">#ffffffff</color>
+
+    <!--Basic Colors-->
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="grey">#9A9A9A</color>
+
+    <!--Toolbar Configuration-->
+    <color name="toolbar_text_color">@color/text_color_white</color>
+    <color name="toolbar_background">@color/main</color>
+
+    <!--Tab Configuration-->
+    <color name="tab_text_color">@color/toolbar_text_color</color>
+    <color name="tab_background">@color/toolbar_background</color>
+    <color name="tab_strip_text_selected">@color/main</color>
+    <color name="tab_strip_text_unselected">@color/main_black</color>
+    <color name="tab_strip_background">#66fafafa</color>
+
+    <!--Toast Configuration-->
+    <color name="toast_background">@color/main</color>
+    <color name="toast_text_color">@color/text_color_white</color>
+
+    <!--ListItem Configuration-->
+    <color name="list_divider_color">#757575</color>
+    <color name="list_item_text_color">@color/text_color_black</color>
+    <color name="list_item_background_normal">#ffffffff</color>
+    <color name="list_item_background_pressed">#F1F1F1</color>
+
+    <!--BlogItem Configuration-->
+    <color name="blog_item_bg">@color/list_item_background_normal</color>
+    <color name="blog_item_avatar_border">#EEEEEE</color>
+    <color name="blog_item_avatar_bg">@color/list_item_background_pressed</color>
+    <color name="blog_item_title">@color/main</color>
+    <color name="blog_item_desc">#757575</color>
+    <color name="blog_item_author">#FF3B6E75</color>
+    <color name="blog_item_text">@color/text_color_black</color>
+
+    <!--Left Drawer Configuration-->
+    <color name="drawer_left_background">@color/window_background</color>
+    <color name="drawer_left_header_username">@color/text_color_white</color>
+    <color name="drawer_left_header_avatar_border">@color/drawer_left_header_username</color>
+    <color name="drawer_left_divider">@color/list_divider_color</color>
+    <color name="drawer_left_list_item_ic_color">@color/list_divider_color</color>
+    <color name="drawer_left_list_item_background">@color/list_item_background_normal</color>
+    <color name="drawer_left_list_item_text_color">@color/drawer_left_list_item_ic_color</color>
+</resources>
