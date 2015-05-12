@@ -23,12 +23,13 @@ import java.io.Serializable;
 public class CacheManager {
 
     /**
-     * 保存对象
+     * Save the object
      *
-     * @param ser
-     * @param file
-     * @throws java.io.IOException
+     * @param ser serializable object
+     * @param file cache file
+     * @throws java.io.IOException IOException
      */
+    @SuppressWarnings("JavaDoc")
     public static boolean saveObject(Context context, Serializable ser,
                                      String file) {
         FileOutputStream fos = null;
@@ -44,23 +45,26 @@ public class CacheManager {
             return false;
         } finally {
             try {
-                oos.close();
+                if (oos != null) oos.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
             try {
-                fos.close();
+                if (fos != null) fos.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
 
     /**
-     * 读取对象
+     * Read the object
      *
-     * @param file
-     * @return
-     * @throws java.io.IOException
+     * @param file cache file
+     * @return serializable object
+     * @throws java.io.IOException Exception
      */
+    @SuppressWarnings("JavaDoc")
     public static Serializable readObject(Context context, String file) {
         if (!isExistDataCache(context, file))
             return null;
@@ -71,41 +75,47 @@ public class CacheManager {
             ois = new ObjectInputStream(fis);
             return (Serializable) ois.readObject();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
             // 反序列化失败 - 删除缓存文件
             if (e instanceof InvalidClassException) {
                 File data = context.getFileStreamPath(file);
+                //noinspection ResultOfMethodCallIgnored
                 data.delete();
             }
         } finally {
             try {
-                ois.close();
+                if (ois != null) ois.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
             try {
-                fis.close();
+                if (fis != null) fis.close();
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return null;
     }
 
     /**
-     * 判断缓存数据是否可读
+     * Judge whether the cache file is readable.
      *
-     * @param cachefile
-     * @return
+     * @param context context
+     * @param cachefile cache file
+     * @return true if the cache file is readable, false otherwise.
      */
     public static boolean isReadDataCache(Context context, String cachefile) {
         return readObject(context, cachefile) != null;
     }
 
     /**
-     * 判断缓存是否存在
+     * Juget whether the cache file exists.
      *
-     * @param cachefile
-     * @return
+     * @param context context
+     * @param cachefile cache file
+     * @return true if the cache data exists, false otherwise.
      */
     public static boolean isExistDataCache(Context context, String cachefile) {
         if (context == null)
