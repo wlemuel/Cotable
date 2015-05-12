@@ -25,8 +25,9 @@ public class CacheManager {
     /**
      * Save the object
      *
-     * @param ser serializable object
-     * @param file cache file
+     * @param context context
+     * @param ser     serializable object
+     * @param file    cache file
      * @throws java.io.IOException IOException
      */
     @SuppressWarnings("JavaDoc")
@@ -60,7 +61,8 @@ public class CacheManager {
     /**
      * Read the object
      *
-     * @param file cache file
+     * @param context context
+     * @param file    cache file
      * @return serializable object
      * @throws java.io.IOException Exception
      */
@@ -78,7 +80,7 @@ public class CacheManager {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-            // 反序列化失败 - 删除缓存文件
+            // Delete the cache file if the deserialization failed.
             if (e instanceof InvalidClassException) {
                 File data = context.getFileStreamPath(file);
                 //noinspection ResultOfMethodCallIgnored
@@ -102,7 +104,7 @@ public class CacheManager {
     /**
      * Judge whether the cache file is readable.
      *
-     * @param context context
+     * @param context   context
      * @param cachefile cache file
      * @return true if the cache file is readable, false otherwise.
      */
@@ -113,7 +115,7 @@ public class CacheManager {
     /**
      * Juget whether the cache file exists.
      *
-     * @param context context
+     * @param context   context
      * @param cachefile cache file
      * @return true if the cache data exists, false otherwise.
      */
