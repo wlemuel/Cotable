@@ -1,0 +1,7 @@
+include ':app' //, 'library-pulltorefresh' , ':library-photoview', ':library-viewpager-indicator',
+//':library-sticky-listheaders', ':library-umengshare'
+//project(':library-photoview').projectDir = new File('libraries/library-photoview')
+//project(':library-viewpager-indicator').projectDir = new File('libraries/library-viewpager-indicator')
+//project(':library-sticky-listheaders').projectDir = new File('libraries/library-sticky-listheaders')
+//project(':library-umengshare').projectDir = new File('libraries/library-umengshare')
+//project(':library-pulltorefresh').projectDir = new File('libraries/library-pulltorefresh')
