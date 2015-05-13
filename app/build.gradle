@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "tk.wlemuel.cotable"
+        minSdkVersion 9
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', exclude: ['x.jar'], include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:recyclerview-v7:21.0.3'
+    compile 'com.joanzapata.android:android-iconify:1.0.8'
+    compile 'de.hdodenhof:circleimageview:1.2.2'
+    compile 'com.loopj.android:android-async-http:1.4.6'
+
+    //    compile project(':library-pulltorefresh')
+    //    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    //    compile 'com.github.johnpersano:supertoasts:1.3.4@aar'
+    //    compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
+    //    compile 'com.balysv.materialmenu:material-menu-abc:1.5.1'
+    //    compile 'in.srain.cube:ultra-ptr:1.0.9@aar'
+    //    compile 'be.webelite:ion-iconview:1.0.+@aar'
+    //    compile 'com.github.traex.calendarlistview:library:1.2.2'
+    //    compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
+    //    compile 'com.balysv.materialmenu:material-menu:1.5.1'
+    //    compile 'com.github.manuelpeinado.fadingactionbar:fadingactionbar:3.1.2'
+    //    compile 'com.getbase:floatingactionbutton:1.9.0'
+    //    compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
+    //    compile 'com.specyci:residemenu:1.6+'
+    //    compile 'com.arasthel:gnavdrawer-library:+'
+}
+
