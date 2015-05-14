@@ -55,7 +55,7 @@ public class EmptyLayout extends LinearLayout implements
         mTv = (TextView) view.findViewById(R.id.error_layout_tv);
         mLayout = (RelativeLayout) view.findViewById(R.id.error_layout_main);
         animProgress = (ProgressBar) view.findViewById(R.id.error_layout_animProgress);
-        mAnim = AnimationUtils.loadAnimation(context, R.anim.progressbar);
+        mAnim = AnimationUtils.loadAnimation(context, R.anim.progressbar_loading);
         setBackgroundColor(-1);
         setOnClickListener(this);
         img.setOnClickListener(new OnClickListener() {

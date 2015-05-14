@@ -5,17 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.TextView;
 
 import java.io.Serializable;
 
 import tk.wlemuel.cotable.R;
 import tk.wlemuel.cotable.api.BlogApi;
 import tk.wlemuel.cotable.base.BaseDetailFragment;
+import tk.wlemuel.cotable.core.AppConfig;
+import tk.wlemuel.cotable.core.AppContext;
 import tk.wlemuel.cotable.model.BlogDetail;
 import tk.wlemuel.cotable.model.Entity;
 import tk.wlemuel.cotable.ui.empty.EmptyLayout;
-import tk.wlemuel.cotable.utils.TLog;
 
 /**
  * BlogFragment
@@ -31,9 +31,10 @@ public class BlogFragment extends BaseDetailFragment {
     public static final String BUNDLE_KEY_BLOG_ID = "BLOG_ID";
     protected static final String TAG = BlogFragment.class.getSimpleName();
     private static final String BLOG_CACHE_KEY = "blog_";
-    private TextView mTvSource;
-    private String _blogId;
-    private BlogDetail _blogDetail;
+    private static final String CONTENT_TEMPLATE = "content.html";
+    private static final String mimeType = "text/html";
+    private String mBlogId;
+    private BlogDetail mBlogDetail;
 
     @Override
     public void onClick(View v) {
@@ -53,11 +54,11 @@ public class BlogFragment extends BaseDetailFragment {
 
         Bundle args = getArguments();
         if (args != null) {
-            _blogId = (String) args.get(BUNDLE_KEY_BLOG_ID);
+            mBlogId = (String) args.get(BUNDLE_KEY_BLOG_ID);
         }
 
-        if (_blogId == null || _blogId.equals("")) {
-            _blogId = "4495118";
+        if (mBlogId == null || mBlogId.equals("")) {
+            mBlogId = "4495118";
         }
 
         initViews(view);
@@ -77,13 +78,13 @@ public class BlogFragment extends BaseDetailFragment {
 
     @Override
     protected String getCacheKey() {
-        return new StringBuilder(BLOG_CACHE_KEY).append(_blogId).toString();
+        return BLOG_CACHE_KEY + mBlogId;
     }
 
     @Override
     protected void sendRequestData() {
         mEmptyLayout.setErrorType(EmptyLayout.NETWORK_LOADING);
-        BlogApi.getBlogDetail(_blogId, mHandler);
+        BlogApi.getBlogDetail(mBlogId, mHandler);
     }
 
     @Override
@@ -98,13 +99,21 @@ public class BlogFragment extends BaseDetailFragment {
 
     @Override
     protected void executeOnLoadDataSuccess(Entity entity) {
-        _blogDetail = (BlogDetail) entity;
+        mBlogDetail = (BlogDetail) entity;
         fillWebViewBody();
     }
 
     private void fillWebViewBody() {
         mWebView.setWebViewClient(mWebViewClient);
-        TLog.log("webview", _blogDetail.getBody());
-        mWebView.loadDataWithBaseURL(null, _blogDetail.getBody(), "text/html", "utf-8", null);
+
+        String content = AppContext.getFromAssets(CONTENT_TEMPLATE);
+        if (content == null) content = "";
+
+        content = content.replace("{%skin%}", "day");
+        content = content.replace("{%size%}", "font-middle");
+        content = content.replace("{%Content%}", mBlogDetail.getBody());
+
+        mWebView.loadDataWithBaseURL(
+                AppConfig.LOCAL_PATH, content, mimeType, AppConfig.UTF8, null);
     }
 }

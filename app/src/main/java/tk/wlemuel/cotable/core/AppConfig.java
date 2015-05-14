@@ -39,6 +39,7 @@ public class AppConfig {
 
     // Other configurations
     public final static int SEARCH_ICON_SIZE_PATCH = 20;
+    public final static String LOCAL_PATH = "file:///android_asset/";
 
     private static AppConfig appConfig;
     private Context mContext;
@@ -116,7 +117,7 @@ public class AppConfig {
 
     public void set(Properties p) {
         Properties props = get();
-        p.putAll(p);
+        props.putAll(p);
         setProps(props);
     }
 

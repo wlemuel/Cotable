@@ -10,7 +10,9 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 import tk.wlemuel.cotable.api.ApiHttpClient;
@@ -118,6 +120,31 @@ public class AppContext extends BaseApplication {
 
     public static long getRefreshTime(String cacheKey) {
         return getPreferences().getLong(cacheKey, 0);
+    }
+
+    public static String getFromAssets(String filename) {
+        try {
+            InputStreamReader isr = new InputStreamReader(
+                    context().getResources().getAssets().open(filename)
+            );
+
+            BufferedReader br = new BufferedReader(isr);
+
+            String line;
+            String result = "";
+
+            while ((line = br.readLine()) != null)
+                result += line;
+
+            br.close();
+            isr.close();
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @Override

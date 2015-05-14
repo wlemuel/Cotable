@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tk.wlemuel.cotable.R;
-import tk.wlemuel.cotable.adapter.DrawerLeftMenuAdapter;
 import tk.wlemuel.cotable.base.BaseActivity;
 import tk.wlemuel.cotable.core.AppConfig;
-import tk.wlemuel.cotable.model.DrawerLeftMenuModel;
+import tk.wlemuel.cotable.model.DrawerMenu;
+import tk.wlemuel.cotable.ui.drawer.DrawerMenuAdapter;
 
 
 public class MainActivity extends BaseActivity {
@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initSlidingMenu() {
-        List<DrawerLeftMenuModel> listMenuData = new ArrayList<>();
+        List<DrawerMenu> listMenuData = new ArrayList<>();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
         mDrawerLeft = (LinearLayout) findViewById(R.id.drawer_left);
@@ -78,13 +78,13 @@ public class MainActivity extends BaseActivity {
         mMenuListView = (ListView) findViewById(R.id.drawer_left_list);
 
         for (String data : mMenuTitles) {
-            DrawerLeftMenuModel itemData = new DrawerLeftMenuModel();
+            DrawerMenu itemData = new DrawerMenu();
             itemData.setIcon("{fa-rss}");
             itemData.setText(data);
             listMenuData.add(itemData);
         }
 
-        mMenuListView.setAdapter(new DrawerLeftMenuAdapter(this, listMenuData));
+        mMenuListView.setAdapter(new DrawerMenuAdapter(this, listMenuData));
         mMenuListView.setOnItemClickListener(new DrawerItemClickListener());
     }
 
