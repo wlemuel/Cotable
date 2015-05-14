@@ -47,6 +47,7 @@ public final class BlogTabPagerAdapter extends SlidingTabPagerAdapter {
             if (tabFragment == null) {
                 try {
                     tabFragment = (BaseTabFragment) tab.getClz().newInstance();
+                    tabFragment.setCatalog(tab.getCatalog());
                 } catch (InstantiationException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {

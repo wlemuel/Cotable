@@ -1,7 +1,7 @@
 package tk.wlemuel.cotable.model;
 
 import tk.wlemuel.cotable.R;
-import tk.wlemuel.cotable.activity.blog.fragment.BlogFragment;
+import tk.wlemuel.cotable.activity.blog.fragment.BlogDetailFragment;
 import tk.wlemuel.cotable.activity.settings.fragment.AboutFragment;
 import tk.wlemuel.cotable.activity.settings.fragment.SettingFragment;
 
@@ -18,7 +18,7 @@ public enum SimpleBackPage {
 
     SETTING(0, R.string.actionbar_title_setting, SettingFragment.class),
     ABOUT(1, R.string.actionbar_title_about, AboutFragment.class),
-    DETAILS(2, R.string.actionbar_title_blogdetail, BlogFragment.class);
+    DETAILS(2, R.string.actionbar_title_blogdetail, BlogDetailFragment.class);
 
     private int title;
     private Class<?> clz;

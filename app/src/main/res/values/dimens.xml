@@ -1,0 +1,55 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--Global Configuration-->
+    <dimen name="icon_size">20dip</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="divider_height">4dip</dimen>
+    <dimen name="tab_shadow_height">6dip</dimen>
+    <dimen name="text_margin">16dip</dimen>
+    <dimen name="pager_sliding_tab_strip_height">40.0dip</dimen>
+
+    <dimen name="space_8">8.0dip</dimen>
+    <dimen name="space_10">10.0dip</dimen>
+    <dimen name="space_16">16.0dip</dimen>
+
+    <!--Drawer left configuration-->
+    <dimen name="drawer_left_header_width">280dp</dimen>
+    <dimen name="drawer_left_header_height">160dp</dimen>
+    <dimen name="drawer_left_header_avatar_size">70dp</dimen>
+    <dimen name="drawer_left_header_avatar_marginTop">35dp</dimen>
+    <dimen name="drawer_left_header_avatar_border">2dp</dimen>
+    <dimen name="drawer_left_header_content_padding">20dp</dimen>
+    <dimen name="drawer_left_header_username_size">15sp</dimen>
+
+    <dimen name="drawer_left_list_item_height">48dp</dimen>
+    <dimen name="drawer_left_list_item_ic_size">24sp</dimen>
+    <dimen name="drawer_left_list_item_ic_marginLeft">24dp</dimen>
+    <dimen name="drawer_left_list_item_text_size">16sp</dimen>
+    <dimen name="drawer_left_list_item_text_marginLeft">42dp</dimen>
+    <dimen name="drawer_left_list_marginVertical">8dp</dimen>
+    <dimen name="drawer_left_list_group_height">48dp</dimen>
+    <dimen name="drawer_left_list_group_text_size">14sp</dimen>
+    <dimen name="drawer_left_list_group_ic_size">20sp</dimen>
+
+    <dimen name="drawer_left_settings_height">60dp</dimen>
+    <dimen name="drawer_left_setting_padding">8dp</dimen>
+    <dimen name="drawer_left_settings_divider">6dp</dimen>
+    <dimen name="drawer_left_setting_icon_size">25dp</dimen>
+    <dimen name="drawer_left_setting_text_size">10sp</dimen>
+
+    <!--Blog Item Configuration-->
+    <dimen name="blog_item_padding">16dp</dimen>
+    <dimen name="blog_item_title">18sp</dimen>
+    <dimen name="blog_item_content_marginV">8dp</dimen>
+    <dimen name="blog_item_avatar_marginRight">8dp</dimen>
+    <dimen name="blog_item_author">10sp</dimen>
+    <dimen name="blog_item_posted">10sp</dimen>
+    <dimen name="blog_item_posted_paddingRight">5dp</dimen>
+    <dimen name="blog_item_date">10sp</dimen>
+    <dimen name="blog_item_comment">10sp</dimen>
+    <dimen name="blog_item_comment_marginRight">5dp</dimen>
+    <dimen name="blog_item_reading">10sp</dimen>
+</resources>

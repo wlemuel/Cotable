@@ -18,22 +18,31 @@ import tk.wlemuel.cotable.model.Entity;
 import tk.wlemuel.cotable.ui.empty.EmptyLayout;
 
 /**
- * BlogFragment
+ * BlogDetailFragment
  *
  * @author Steve Lemuel
  * @version 0.1
- * @desc BlogFragment
+ * @desc BlogDetailFragment
  * @created 2015/05/11
  * @updated 2015/05/11
  */
-public class BlogFragment extends BaseDetailFragment {
+public class BlogDetailFragment extends BaseDetailFragment {
 
     public static final String BUNDLE_KEY_BLOG_ID = "BLOG_ID";
-    protected static final String TAG = BlogFragment.class.getSimpleName();
+    public static final String BUNDLE_KEY_BLOG_TITLE = "BLOG_TITLE";
+    public static final String BUNDLE_KEY_BLOG_AUTHOR = "BLOG_AUTHOR";
+    public static final String BUNDLE_KEY_BLOG_READS = "BLOG_READS";
+    public static final String BUNDLE_KEY_BLOG_POSTED = "BLOG_POSTED";
+
+    protected static final String TAG = BlogDetailFragment.class.getSimpleName();
     private static final String BLOG_CACHE_KEY = "blog_";
-    private static final String CONTENT_TEMPLATE = "content.html";
+    private static final String CONTENT_TEMPLATE = "content-template.html";
     private static final String mimeType = "text/html";
     private String mBlogId;
+    private String mBlogTitle;
+    private String mBlogAuthor;
+    private String mBlogReads;
+    private String mBlogPosted;
     private BlogDetail mBlogDetail;
 
     @Override
@@ -55,6 +64,10 @@ public class BlogFragment extends BaseDetailFragment {
         Bundle args = getArguments();
         if (args != null) {
             mBlogId = (String) args.get(BUNDLE_KEY_BLOG_ID);
+            mBlogTitle = (String) args.get(BUNDLE_KEY_BLOG_TITLE);
+            mBlogAuthor = (String) args.get(BUNDLE_KEY_BLOG_AUTHOR);
+            mBlogPosted = (String) args.get(BUNDLE_KEY_BLOG_POSTED);
+            mBlogReads = (String) args.get(BUNDLE_KEY_BLOG_READS);
         }
 
         if (mBlogId == null || mBlogId.equals("")) {
@@ -110,7 +123,10 @@ public class BlogFragment extends BaseDetailFragment {
         if (content == null) content = "";
 
         content = content.replace("{%skin%}", "day");
-        content = content.replace("{%size%}", "font-middle");
+        content = content.replace("{%title%}", mBlogTitle);
+        content = content.replace("{%author%}", mBlogAuthor);
+        content = content.replace("{%posted%}", mBlogPosted);
+        content = content.replace("{%reads%}", mBlogReads);
         content = content.replace("{%Content%}", mBlogDetail.getBody());
 
         mWebView.loadDataWithBaseURL(

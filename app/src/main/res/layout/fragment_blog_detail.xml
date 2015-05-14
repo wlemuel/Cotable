@@ -28,7 +28,6 @@
                     android:id="@+id/webview"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_8"
                     android:background="@color/list_item_background_normal"/>
             </LinearLayout>
         </ScrollView>
@@ -38,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/space_8"
+            android:layout_marginBottom="@dimen/space_10"
             android:layout_marginRight="@dimen/space_8"
             android:orientation="vertical">
 

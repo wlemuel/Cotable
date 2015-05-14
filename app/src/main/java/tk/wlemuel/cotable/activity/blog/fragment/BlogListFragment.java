@@ -3,6 +3,8 @@ package tk.wlemuel.cotable.activity.blog.fragment;
 import android.view.View;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 import tk.wlemuel.cotable.activity.blog.adapter.BlogAdapter;
 import tk.wlemuel.cotable.api.BlogApi;
@@ -62,14 +64,30 @@ public class BlogListFragment extends BaseRecycleViewFragment {
 
     @Override
     protected void sendRequestData() {
-        BlogApi.getBlogList(mCurrentPage + 1, getResponseHandler());
+        if (mCatalog == BlogList.CATALOG_RECOMMEND) {
+            BlogApi.getRecommendBlogList(mCurrentPage + 1, getResponseHandler());
+        } else {
+            BlogApi.getBlogList(mCurrentPage + 1, getResponseHandler());
+        }
     }
 
     @Override
     public void onItemClick(View v, int position) {
         Blog blog = (Blog) mAdapter.getItem(position);
+
+        Map<String, String> blogInfo = new HashMap<>();
+        blogInfo.put(BlogDetailFragment.BUNDLE_KEY_BLOG_AUTHOR, blog.getAuthor_name());
+        blogInfo.put(BlogDetailFragment.BUNDLE_KEY_BLOG_TITLE, blog.getTitle());
+        blogInfo.put(BlogDetailFragment.BUNDLE_KEY_BLOG_POSTED, blog.getUpdated());
+        blogInfo.put(BlogDetailFragment.BUNDLE_KEY_BLOG_READS, blog.getReads() == 0 ? "0" : Integer
+                .toString(blog.getReads()));
+        blogInfo.put(BlogDetailFragment.BUNDLE_KEY_BLOG_ID, blog.getPostId());
+
+
         if (blog != null) {
-            UIHelper.showBlogDetail(getActivity(), blog.getPostId());
+            UIHelper.showBlogDetail(getActivity(), blogInfo);
         }
     }
+
+
 }

@@ -18,17 +18,12 @@ public class BlogApi extends BaseApi {
 
     public static final String TAG = BlogApi.class.getSimpleName();
 
-    private static final String TEMP = "http://cnblogs.davismy.com/Handler" +
-            ".ashx?op=GetBlogContent&blog_id={0}";
-
     public static void getBlogList(int page, AsyncHttpResponseHandler handler) {
 
         String relativeUrl = RECENT_BLOGS_PAGED.replace(FLAG_PAGEINDEX, Integer.toString(page))
                 .replace(FLAG_PAGESIZE, Integer.toString(AppConfig.DEFAULT_PAGE_SIZE));
 
         TLog.log("Start request data with the method of getBlogList");
-
-        ApiHttpClient.resetClientHost();
 
         ApiHttpClient.get(relativeUrl, handler);
     }
@@ -42,12 +37,14 @@ public class BlogApi extends BaseApi {
     }
 
     public static void getBlogDetail(String postId, AsyncHttpResponseHandler handler) {
-//        String partUrl = BLOGS_CONTENTS.replace(FLAG_POSTID, postId);
+        String partUrl = BLOG_CONTENTS.replace(FLAG_POSTID, postId);
 
-        String partUrl = TEMP.replace("{0}", postId);
+        ApiHttpClient.get(partUrl, handler);
+    }
 
-        ApiHttpClient.setClientHost("cnblogs.davismy.com");
+    public static void getAuthorAvatar(String blogapp, AsyncHttpResponseHandler handler) {
+        String partUrl = GET_USER_INFO.replace(FLAG_BLOGAPP, blogapp);
 
-        ApiHttpClient.getDirect(partUrl, handler);
+        ApiHttpClient.get(partUrl, handler);
     }
 }

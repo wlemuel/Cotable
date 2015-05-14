@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
+import com.melnykov.fab.FloatingActionButton;
 
 import org.apache.http.Header;
 
@@ -22,7 +23,6 @@ import java.util.List;
 import tk.wlemuel.cotable.R;
 import tk.wlemuel.cotable.cache.CacheManager;
 import tk.wlemuel.cotable.core.AppContext;
-import tk.wlemuel.cotable.model.BlogList;
 import tk.wlemuel.cotable.model.ListEntity;
 import tk.wlemuel.cotable.ui.decorator.DividerItemDecoration;
 import tk.wlemuel.cotable.ui.empty.EmptyLayout;
@@ -52,6 +52,9 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
     // the recycle view
     protected FixedRecyclerView mRecycleView;
 
+    // the floating button
+    protected FloatingActionButton mFab;
+
     // the linearlayoutmanager
     protected LinearLayoutManager mLayoutManager;
 
@@ -67,7 +70,7 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
 
 
     protected int mCurrentPage = 0;
-    protected int mCatalog = BlogList.CATALOG_LASTEST;
+
 
     // Task for handling the cache.
     private AsyncTask<String, Void, ListEntity> mCacheTask;
@@ -92,8 +95,22 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
                     loadMore();
                 }
             }
+
+            if (dy > 0) {
+                mFab.hide();
+            } else {
+                mFab.show();
+            }
         }
     };
+
+    // Scroll the current recycle view to top.
+    private void scrollToTop() {
+        if (mRecycleView != null) {
+            mRecycleView.smoothScrollToPosition(0);
+        }
+    }
+
 
 
     /**
@@ -156,6 +173,18 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
         });
 
         mRecycleView = (FixedRecyclerView) view.findViewById(R.id.recycleView);
+        mFab = (FloatingActionButton) view.findViewById(R.id.fab);
+        mFab.hide(false);
+
+        mFab.attachToRecyclerView(mRecycleView);
+
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollToTop();
+            }
+        });
+
         mRecycleView.setOnScrollListener(mScrollListener);
         mRecycleView.addItemDecoration(new DividerItemDecoration(getActivity(),
                 DividerItemDecoration.VERTICAL_LIST));

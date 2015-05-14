@@ -23,11 +23,12 @@ public class ApiHttpClient {
 
     public static final String TAG = ApiHttpClient.class.getSimpleName();
 
-    private static final String HOST = "wcf.open.cnblogs.com";
-    private static final String DEV_HOST = "wcf.open.cnblogs.com";
-    private static final String DEV_API_URL = "wcf.open.cnblogs.com/%s";
-    private static final String REAL_API_URL = "wcf.open.cnblogs.com/%s";
+    private static final String HOST = BaseApi.HOST;
+    private static final String DEV_HOST = BaseApi.HOST;
+    private static final String DEV_API_URL = BaseApi.DEFAULT_API_URL;
+    private static final String REAL_API_URL = BaseApi.DEFAULT_API_URL;
     private static final String DEF_API_URL = DEV_API_URL;
+
     private static final String HTTP = "http://";
     private static final String HTTPS = "https://";
     private static final String GET = "GET";

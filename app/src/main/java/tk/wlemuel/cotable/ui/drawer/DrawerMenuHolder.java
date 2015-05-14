@@ -8,19 +8,19 @@ import tk.wlemuel.cotable.R;
 
 
 public class DrawerMenuHolder {
-    private IconTextView drawerLeftListItemIcon;
-    private TextView drawerLeftListItemText;
+    private IconTextView mIconTextView;
+    private TextView mTextView;
 
     public DrawerMenuHolder(View view) {
-        drawerLeftListItemIcon = (IconTextView) view.findViewById(R.id.drawer_left_list_item_icon);
-        drawerLeftListItemText = (TextView) view.findViewById(R.id.drawer_left_list_item_text);
+        mIconTextView = (IconTextView) view.findViewById(R.id.drawer_left_list_item_icon);
+        mTextView = (TextView) view.findViewById(R.id.drawer_left_list_item_text);
     }
 
-    public TextView getDrawerLeftListItemText() {
-        return drawerLeftListItemText;
+    public TextView getTextView() {
+        return mTextView;
     }
 
-    public IconTextView getDrawerLeftListItemIcon() {
-        return drawerLeftListItemIcon;
+    public IconTextView getIconTextView() {
+        return mIconTextView;
     }
 }

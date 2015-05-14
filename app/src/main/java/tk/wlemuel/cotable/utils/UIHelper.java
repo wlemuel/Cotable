@@ -1,11 +1,14 @@
 package tk.wlemuel.cotable.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.webkit.WebView;
 
-import tk.wlemuel.cotable.activity.blog.fragment.BlogFragment;
+import java.util.Map;
+
 import tk.wlemuel.cotable.activity.common.SimpleBackActivity;
 import tk.wlemuel.cotable.model.SimpleBackPage;
 
@@ -24,11 +27,17 @@ public class UIHelper {
      * Show Blog Details
      *
      * @param context context
-     * @param blogId  blog id
+     * @param blogInfo  blog id
      */
-    public static void showBlogDetail(Context context, String blogId) {
+    public static void showBlogDetail(Context context, Map<String, String> blogInfo) {
         Bundle args = new Bundle();
-        args.putString(BlogFragment.BUNDLE_KEY_BLOG_ID, blogId);
+
+        if (blogInfo != null) {
+            for (Map.Entry<String, String> entry : blogInfo.entrySet()) {
+                args.putString(entry.getKey(), entry.getValue());
+            }
+        }
+
         showSimpleBack(context, SimpleBackPage.DETAILS, args);
     }
 
@@ -60,6 +69,24 @@ public class UIHelper {
         intent.putExtra(SimpleBackActivity.BUNDLE_KEY_ARGS, args);
         intent.putExtra(SimpleBackActivity.BUNDLE_KEY_PAGE, page.getValue());
         context.startActivity(intent);
+    }
+
+    /**
+     * 添加网页的点击图片展示支持
+     */
+    @SuppressLint("JavascriptInterface")
+    public static void addWebImageShow(final Context cxt, WebView wv) {
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.addJavascriptInterface(new OnWebViewImageListener() {
+
+            @Override
+            public void onImageClick(String bigImageUrl) {
+                if (bigImageUrl != null) {
+                    // UIHelper.showImageZoomDialog(cxt, bigImageUrl);
+//                    UIHelper.showImagePreview(cxt, new String[]{bigImageUrl});
+                }
+            }
+        }, "mWebViewImageListener");
     }
 
 

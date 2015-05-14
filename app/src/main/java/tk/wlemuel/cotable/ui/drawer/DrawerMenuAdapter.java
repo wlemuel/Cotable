@@ -54,8 +54,8 @@ public class DrawerMenuAdapter extends BaseAdapter {
         }
 
         DrawerMenu item = mItemsData.get(position);
-        holder.getDrawerLeftListItemIcon().setText(item.getIcon());
-        holder.getDrawerLeftListItemText().setText(item.getText());
+        holder.getIconTextView().setText(item.getIcon());
+        holder.getTextView().setText(item.getText());
 
         return convertView;
     }

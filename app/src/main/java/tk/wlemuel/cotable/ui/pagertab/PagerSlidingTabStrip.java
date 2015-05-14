@@ -1,7 +1,13 @@
 package tk.wlemuel.cotable.ui.pagertab;
 
 /**
- * Created by stevelemuel on 4/5/15.
+ * PagerSlidingTabStrip
+ *
+ * @desc PagerSlidingTabStrip
+ * @author Steve Lemuel
+ * @version 0.1
+ * @created 2015/05/14
+ * @updated 2015/05/14
  */
 
 import android.annotation.SuppressLint;
@@ -76,7 +82,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView implements
         super(context, attrs, defStyle);
         currentPosition = 0;
         currentPositionOffset = 0.0F;
-        indicatorColor = Color.parseColor("#4291DA");// 0xff01d9ae;
+        indicatorColor = Color.parseColor("#2196F3");// 0xff01d9ae;
         underlineColor = Color.parseColor("#DADADA");
         dividerColor = 0;
         checkedTextColor = R.color.tab_strip_text_selected;

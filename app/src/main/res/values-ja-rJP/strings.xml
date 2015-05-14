@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">コタブル</string>
+    <string name="app_author">オウシン</string>
+    <string name="app_author_short">wlemuel</string>
+    <string name="app_author_email">wlemuel@hotmail.com</string>
+    <string name="app_author_qq">1078707962</string>
+    <string name="app_author_qq_mail">1078707962@qq.com</string>
+    <string name="app_author_url">http://wlemuel.tk</string>
+
+    <string name="action_menu_user">ユーザ</string>
+    <string name="action_menu_favor">クリップ</string>
+    <string name="action_menu_settings">設定</string>
+    <string name="action_menu_exit">終了</string>
+    <string name="drawer_close">閉じる</string>
+    <string name="drawer_open">開く</string>
+    <string name="action_menu_search">検索</string>
+    <string name="blog_item_comments_default">コメント (%d)</string>
+    <string name="empty_view_click_to_refresh">再ロード</string>
+    <string name="empty_view_loading">ロード中</string>
+    <string name="blog_item_title_default">JAVAの異常処理</string>
+    <string name="days_ago">日前</string>
+    <string name="a_minute_ago">１分間前</string>
+    <string name="an_hour_ago">１時間前</string>
+    <string name="blog_item_posted_default">発表時間 : </string>
+    <string name="blog_item_reading_default">読み (%d)</string>
+    <string name="yesterday">昨日</string>
+    <string name="the_day_before_yesterday">おととい</string>
+    <string name="blog_item_author_default">@string/app_author</string>
+    <string name="actionbar_title_setting">設定</string>
+    <string name="actionbar_title_blogdetail">ブログ内容</string>
+    <string name="actionbar_title_about"></string>
+    <string name="empty_view_network_error">ネトワクに接続できません。</string>
+    <string name="empty_view_no_data">データなし</string>
+    <string name="blog_item_date_default">2015-04-19 14:52</string>
+    <string name="blog_item_desc_default">想到用python发送邮件主要是服务器 有时候会产生coredump文件 ，然后因为脚本重启原因，服务器coredump产生后会重启但是没有主动通知开发人员想了下可以写个脚本一旦产生coredump文件就可以发送邮件给开发者让其立马知道下面只介绍简单的发送脚本如果需要在生产环境用起来 还需要按要求修...</string>
+    <string name="blog_item_hint_author">作者 : </string>
+    <string name="hours_ago">時間前</string>
+    <string name="loading">ロード中...</string>
+    <string name="loading_error">エラー発生</string>
+    <string name="loading_no_network">ネトワクエラー</string>
+    <string name="minutes_ago">分前</string>
+    <string name="tab_title_blog_latest">最新ボログ</string>
+    <string name="tab_title_blog_recommend">オススメ</string>
+    <string name="tab_title_news_latest">最新情報</string>
+    <string name="loading_no_more">データなし</string>
+
+    <string-array name="menu_array">
+        <item>Java</item>
+        <item>C++</item>
+        <item>Python</item>
+        <item>Ruby</item>
+        <item>PHP</item>
+        <item>Objective-C</item>
+        <item>Perl</item>
+    </string-array>
+</resources>

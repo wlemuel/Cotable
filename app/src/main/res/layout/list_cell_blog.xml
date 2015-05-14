@@ -24,13 +24,13 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/blog_author_avatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="@dimen/blog_item_avatar_marginRight"
             android:layout_marginRight="@dimen/blog_item_avatar_marginRight"
             android:padding="2dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_blog_item_avatar"
+            android:src="@drawable/ic_default_avatar"
             app:border_color="@color/blog_item_avatar_border"
             app:border_width="2dp"/>
 
@@ -51,6 +51,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/space_8"
             android:text="@string/blog_item_hint_author"
             android:textColor="@color/text_color_black"
             android:textSize="@dimen/space_10"/>

@@ -23,7 +23,7 @@ public class SplashActivity extends BaseActivity {
 
         TDevice.setFullScreen(this);
 
-        final View view = View.inflate(this, R.layout.activity_splash_main, null);
+        final View view = View.inflate(this, R.layout.aty_splash_background, null);
         setContentView(view);
 
 

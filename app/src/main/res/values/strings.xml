@@ -28,7 +28,7 @@
     <string name="blog_item_comments_default">评论 (%d)</string>
     <string name="blog_item_reading_default">阅读 (%d)</string>
     <string name="blog_item_posted_default">发布时间: </string>
-    <string name="blog_item_hint_author">作者 :</string>
+    <string name="blog_item_hint_author">作者 : </string>
 
     <!--Empty Layout-->
     <string name="empty_view_click_to_refresh">点击屏幕, 重新加载</string>
@@ -52,7 +52,7 @@
 
     <string name="tab_title_blog_latest">最新博客</string>
     <string name="tab_title_blog_recommend">推荐阅读</string>
-    <string name="tab_title_news_latest">最新资讯</string>
+    <string name="tab_title_news_latest">资讯新闻</string>
 
     <string name="actionbar_title_setting">设置</string>
     <string name="actionbar_title_about">关于</string>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@drawable/tab_strip_background"
+              android:gravity="center"
+              android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/con"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tab_title_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/tab_strip_text_unselected"
+            android:textSize="15.0sp"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/tab_new_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@null"
+        android:src="@drawable/tab_notification_bg"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tab_new_msg_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/tab_notification_bg"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="12.0sp"
+        android:visibility="gone"/>
+
+</LinearLayout>

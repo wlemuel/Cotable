@@ -1,14 +1,22 @@
 package tk.wlemuel.cotable.core;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,6 +25,7 @@ import java.util.Properties;
 
 import tk.wlemuel.cotable.api.ApiHttpClient;
 import tk.wlemuel.cotable.base.BaseApplication;
+import tk.wlemuel.cotable.utils.CircleBitmapDisplayer;
 import tk.wlemuel.cotable.utils.StringUtils;
 
 /**
@@ -147,6 +156,40 @@ public class AppContext extends BaseApplication {
         return null;
     }
 
+    public static void initImageLoader(Context context) {
+        DisplayImageOptions displayOptions = new DisplayImageOptions.Builder()
+                //.preProcessor(new BitmapProcessor() {
+
+                //	@Override
+                //	public Bitmap process(Bitmap source) {
+                //		Bitmap target = getRoundedCornerBitmapBig(source);
+                //		if (source != target) {
+                //			source.recycle();
+                //		}
+                //		return target;
+                //	}
+                //})
+                .displayer(new CircleBitmapDisplayer())
+                .cacheInMemory(true).cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565).build();
+        // This configuration tuning is custom. You can tune every option, you
+        // may tune some of them,
+        // or you can create default configuration by
+        // ImageLoaderConfiguration.createDefault(this);
+        // method.
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                context).threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .diskCacheSize(50 * 1024 * 1024)
+                        // 50 Mb
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                        //.writeDebugLogs() // Remove for release app
+                .defaultDisplayImageOptions(displayOptions).build();
+        // Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config);
+    }
+
     @Override
     protected void init() {
         super.init();
@@ -168,6 +211,8 @@ public class AppContext extends BaseApplication {
 
         // Init the AsyncHttpClient
         ApiHttpClient.getHttpClient();
+
+        initImageLoader(this);
     }
 
     /**

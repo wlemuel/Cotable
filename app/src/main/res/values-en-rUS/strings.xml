@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Cotable</string>
+    <string name="app_author">Steve Lemuel</string>
+    <string name="app_author_short">wlemuel</string>
+    <string name="app_author_email">wlemuel@hotmail.com</string>
+    <string name="app_author_qq">1078707962</string>
+    <string name="app_author_qq_mail">1078707962@qq.com</string>
+    <string name="app_author_url">http://wlemuel.tk</string>
+
+    <string name="action_menu_user">User</string>
+    <string name="action_menu_favor">Favors</string>
+    <string name="action_menu_settings">Setting</string>
+    <string name="action_menu_exit">Exit</string>
+    <string name="drawer_close">Close</string>
+    <string name="drawer_open">Open</string>
+    <string name="action_menu_search">Search</string>
+    <string name="blog_item_comments_default">Comments (%d)</string>
+    <string name="blog_item_posted_default">Posted at : </string>
+    <string name="blog_item_reading_default">Read (%d)</string>
+    <string name="empty_view_click_to_refresh">Click to refresh</string>
+    <string name="empty_view_loading">Loading...</string>
+    <string name="empty_view_no_data">No data</string>
+    <string name="blog_item_title_default">JAVA EXCEPTION HANDLE</string>
+    <string name="days_ago">days ago</string>
+    <string name="hours_ago">hours ago</string>
+    <string name="a_minute_ago">a minute ago</string>
+    <string name="an_hour_ago">an hour ago</string>
+    <string name="minutes_ago">minutes ago</string>
+    <string name="the_day_before_yesterday">the day before yesterday</string>
+    <string name="yesterday">yesterday</string>
+    <string name="blog_item_author_default">@string/app_author</string>
+    <string name="actionbar_title_about">About</string>
+    <string name="actionbar_title_blogdetail">Content</string>
+    <string name="actionbar_title_setting">Preferences</string>
+    <string name="loading">Loading...</string>
+    <string name="loading_error">Loading Error.</string>
+    <string name="loading_no_more">No more data</string>
+    <string name="loading_no_network">Network Unavailable</string>
+    <string name="tab_title_blog_latest">LATEST</string>
+    <string name="tab_title_blog_recommend">RECOMMEND</string>
+    <string name="tab_title_news_latest">NEWS</string>
+    <string name="blog_item_hint_author">Author : </string>
+    <string name="empty_view_network_error">Network Error</string>
+    <string name="blog_item_date_default">2015-04-19 14:52</string>
+    <string name="blog_item_desc_default">想到用python发送邮件主要是服务器 有时候会产生coredump文件 ，然后因为脚本重启原因，服务器coredump产生后会重启但是没有主动通知开发人员想了下可以写个脚本一旦产生coredump文件就可以发送邮件给开发者让其立马知道下面只介绍简单的发送脚本如果需要在生产环境用起来 还需要按要求修...</string>
+</resources>

@@ -1,11 +1,9 @@
 package tk.wlemuel.cotable.model;
 
-import android.text.TextUtils;
-import android.util.Xml;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
-import org.xmlpull.v1.XmlPullParser;
-
-import java.io.StringReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,7 +48,7 @@ public class Blog extends Base {
 
     private String author_name;
     private URL author_uri;
-    private URL author_avatar;
+    private String author_avatar;
 
     private URL url;
     private String blogapp;
@@ -70,87 +68,41 @@ public class Blog extends Base {
         List<Blog> blogList = null;
         Blog blog = null;
 
-        XmlPullParser xp = Xml.newPullParser();
-        try {
-            xp.setInput(new StringReader(data));
+        if (data != null && !data.equals("")) try {
+            JSONTokener jsonParser = new JSONTokener(data);
 
-            int eventType = xp.getEventType();
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                String tag = xp.getName();
+            JSONObject content = (JSONObject) jsonParser.nextValue();
+            JSONArray list = content.getJSONArray("data");
 
-                switch (eventType) {
-                    case XmlPullParser.START_DOCUMENT:
-                        blogList = new ArrayList<>();
-                        break;
+            if (list.length() > 0) blogList = new ArrayList<>();
 
-                    case XmlPullParser.START_TAG:
-                        if (tag.equalsIgnoreCase(TAG_ENTRY)) {
-                            blog = new Blog();
-                        } else if (blog != null) {
-                            if (tag.equalsIgnoreCase(TAG_ID)) {
-                                blog.setBlogId(StringUtils.toInt(xp.nextText(), 0));
-                            } else if (tag.equalsIgnoreCase(TAG_TITLE)) {
-                                blog.setTitle(xp.nextText());
-                            } else if (tag.equalsIgnoreCase(TAG_SUMMARY)) {
-                                blog.setSummary(xp.nextText());
-                            } else if (tag.equalsIgnoreCase(TAG_PUBLISHED)) {
-                                blog.setPublished(StringUtils.toDateFromCnblogs(xp.nextText()));
-                            } else if (tag.equalsIgnoreCase(TAG_UPDATED)) {
-                                blog.setUpdated(StringUtils.toDateFromCnblogs(xp.nextText()));
-                            } else if (tag.equalsIgnoreCase(TAG_AUTHOR_NAME)) {
-                                blog.setAuthor_name(xp.nextText());
-                            } else if (tag.equalsIgnoreCase(TAG_AUTHOR_URI)) {
-                                blog.setAuthor_uri(StringUtils.toUrl(xp.nextText()));
-                            } else if (tag.equalsIgnoreCase(TAG_AUTHOR_AVATAR)) {
-                                blog.setAuthor_avatar(StringUtils.toUrl(xp.nextText()));
-                            } else if (tag.equalsIgnoreCase(TAG_LINK)) {
-                                blog.setUrl(StringUtils.toUrl(xp.getAttributeValue(null, TAG_LINK_HREF)));
+            for (int i = 0; i < list.length(); ++i) {
+                JSONObject info = (JSONObject) list.get(i);
+                blog = new Blog();
+                blog.setAuthor_name(info.getString("author"));
+                blog.setPostId(info.getString("blog_id"));
+                blog.setUrl(StringUtils.toUrl(info.getString("blog_url")));
+                blog.setBlogId(StringUtils.toInt(info.getString("blog_id")));
+                blog.setBlogapp(info.getString("blogapp"));
+                blog.setComments(StringUtils.toInt(info.getString("comment")));
+                blog.setSummary(info.getString("content"));
+                blog.setReads(StringUtils.toInt(info.getString("hit")));
+                blog.setTitle(info.getString("title"));
+                blog.setUpdated(StringUtils.toDate(info.getString("public_time")));
 
-                                try {
-                                    // Set the postId for the current Blog entity.
-                                    if (blog.getUrl() != null && !TextUtils.isEmpty(blog.getUrl()
-                                            .toString())) {
-                                        String[] parts = blog.getUrl().toString().split
-                                                (BLOG_LINK_DILIMITER);
-                                        if (parts.length > 0) {
-                                            blog.setPostId(parts[1].substring(0, parts[1].length() -
-                                                    5));
-                                        }
-                                    }
-                                } catch (Exception e) {
-
-                                }
-
-                            } else if (tag.equalsIgnoreCase(TAG_BLOGAPP)) {
-                                blog.setBlogapp(xp.nextText());
-                            } else if (tag.equalsIgnoreCase(TAG_DIGGS)) {
-                                blog.setDiggs(StringUtils.toInt(xp.nextText(), 0));
-                            } else if (tag.equalsIgnoreCase(TAG_VIEWS)) {
-                                blog.setReads(StringUtils.toInt(xp.nextText(), 0));
-                            } else if (tag.equalsIgnoreCase(TAG_COMMENTS)) {
-                                blog.setComments(StringUtils.toInt(xp.nextText(), 0));
-                            }
-                        }
-
-                        break;
-
-                    case XmlPullParser.END_TAG:
-                        if (tag.equalsIgnoreCase(TAG_ENTRY) && blogList != null && blog != null) {
-                            blogList.add(blog);
-                            blog = null;
-                        }
-                        break;
+                if (blogList != null) {
+                    blogList.add(blog);
                 }
 
-                eventType = xp.next();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-
         return blogList;
     }
+
 
     public String getPostId() {
         return postId;
@@ -177,8 +129,6 @@ public class Blog extends Base {
     }
 
     public String getSummary() {
-        if (summary != null && !summary.endsWith(" ..."))
-            summary = summary + " ...";
         return summary;
     }
 
@@ -224,11 +174,11 @@ public class Blog extends Base {
         this.author_uri = author_uri;
     }
 
-    public URL getAuthor_avatar() {
-        return author_avatar;
+    public String getAuthor_avatar() {
+        return "http://pic.cnblogs.com/face/u34358.jpg";
     }
 
-    public void setAuthor_avatar(URL author_avatar) {
+    public void setAuthor_avatar(String author_avatar) {
         this.author_avatar = author_avatar;
     }
 
