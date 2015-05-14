@@ -1,7 +1,8 @@
 #Cotable - Cnblogs Client for Android
 
 ## Description
-
+    Cotable = Code + Stable (The Paradise of Coder)
+   
    The Android client of Cnblogs that named as "Cotable", the reason why I decided to make this baby is that I want to learn Android development and I like read the blogs at "www.cnblogs.com" as well. I do hope u could join me to make this application better.
 
 
@@ -56,6 +57,7 @@
 
 #码厩 - 博客园 Android 客户端
 ## 介绍
+    码厩 = 代码 + 马厩 （意为代码的乐园）
    这个博客园安卓客户端是我利用平时闲暇之余为了学习Android开发而写得，因为平时也喜欢逛逛博客园，所以就拿它来练手了。这个客户端现在还有很多不足之处，希望你能加入我，一起完成它。
     
 ## 截图
