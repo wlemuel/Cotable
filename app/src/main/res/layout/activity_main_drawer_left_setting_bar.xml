@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/list_cell_background_selector"
+        android:padding="@dimen/drawer_left_setting_padding">
+
+        <ImageView
+            android:id="@+id/ic_setting"
+            android:scaleType="centerInside"
+            android:layout_width="@dimen/drawer_left_setting_icon_size"
+            android:layout_height="@dimen/drawer_left_setting_icon_size"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/btn_menu_options_normal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ic_setting"
+            android:text="Settings"
+            android:id="@+id/st_setting"
+            android:gravity="center_horizontal"
+            android:textColor="@color/drawer_left_list_item_text_color"
+            android:layout_marginTop="@dimen/drawer_left_settings_divider"
+            android:textSize="@dimen/drawer_left_setting_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/list_cell_background_selector"
+        android:padding="@dimen/drawer_left_setting_padding">
+
+        <ImageView
+            android:id="@+id/ic_about"
+            android:layout_width="@dimen/drawer_left_setting_icon_size"
+            android:layout_height="@dimen/drawer_left_setting_icon_size"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/btn_menu_about_normal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ic_about"
+            android:text="About"
+            android:id="@+id/st_about"
+            android:gravity="center_horizontal"
+            android:textColor="@color/drawer_left_list_item_text_color"
+            android:layout_marginTop="@dimen/drawer_left_settings_divider"
+            android:textSize="@dimen/drawer_left_setting_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/list_cell_background_selector"
+        android:padding="@dimen/drawer_left_setting_padding">
+
+        <ImageView
+            android:id="@+id/ic_exit"
+            android:layout_width="@dimen/drawer_left_setting_icon_size"
+            android:layout_height="@dimen/drawer_left_setting_icon_size"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/btn_menu_close_normal"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ic_exit"
+            android:text="Exit"
+            android:id="@+id/st_exit"
+            android:gravity="center_horizontal"
+            android:textColor="@color/drawer_left_list_item_text_color"
+            android:layout_marginTop="@dimen/drawer_left_settings_divider"
+            android:textSize="@dimen/drawer_left_setting_text_size" />
+
+    </RelativeLayout>
+
+</LinearLayout>

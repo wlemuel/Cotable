@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_left"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:orientation="vertical"
+    android:background="@color/drawer_left_background">
+
+    <RelativeLayout
+        android:id="@+id/drawer_left_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_left_header_height">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:alpha="0.9"
+            android:src="@drawable/drawer_left_header" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="@dimen/drawer_left_header_avatar_size"
+            android:layout_height="@dimen/drawer_left_header_avatar_size"
+            android:layout_marginLeft="@dimen/drawer_left_header_content_padding"
+            android:layout_marginStart="@dimen/drawer_left_header_content_padding"
+            android:layout_marginTop="@dimen/drawer_left_header_avatar_marginTop"
+            android:src="@drawable/ic_blog_item_avatar"
+            app:border_width="@dimen/drawer_left_header_avatar_border"
+            app:border_color="@color/drawer_left_header_avatar_border"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textSize="@dimen/drawer_left_header_username_size"
+            android:layout_marginLeft="@dimen/drawer_left_header_content_padding"
+            android:layout_marginStart="@dimen/drawer_left_header_content_padding"
+            android:layout_marginBottom="@dimen/drawer_left_header_content_padding"
+            android:textColor="@color/drawer_left_header_username"
+            android:text="@string/app_author" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/drawer_left_list"
+        tools:listitem="@layout/activity_main_drawer_left_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:paddingTop="@dimen/drawer_left_list_marginVertical">
+
+    </ListView>
+
+    <include
+        layout="@layout/activity_main_drawer_left_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <include
+        layout="@layout/activity_main_drawer_left_setting_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_left_settings_height" />
+
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/drawer_left_list_item_height"
+    android:background="@drawable/list_cell_background_selector"
+    android:orientation="horizontal">
+
+    <android.widget.IconTextView
+        android:id="@+id/drawer_left_list_item_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/drawer_left_list_item_height"
+        android:layout_marginLeft="@dimen/drawer_left_list_item_ic_marginLeft"
+        android:layout_marginStart="@dimen/drawer_left_list_item_ic_marginLeft"
+        android:textColor="@color/drawer_left_list_item_ic_color"
+        android:textSize="@dimen/drawer_left_list_item_ic_size" />
+
+    <TextView
+        android:id="@+id/drawer_left_list_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/drawer_left_list_item_height"
+        android:layout_marginEnd="@dimen/text_margin"
+        android:layout_marginLeft="@dimen/drawer_left_list_item_text_marginLeft"
+        android:layout_marginRight="@dimen/text_margin"
+        android:layout_marginStart="@dimen/drawer_left_list_item_text_marginLeft"
+        android:gravity="center_vertical"
+        android:text="About"
+        android:textColor="@color/drawer_left_list_item_text_color"
+        android:textSize="@dimen/drawer_left_list_item_text_size" />
+
+</LinearLayout>

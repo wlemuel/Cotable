@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<ListView-->
+        <!--android:id="@+id/blog_list"-->
+        <!--tools:listitem="@layout/activity_main_blog_list_item"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="0dip"-->
+        <!--android:layout_weight="1"-->
+        <!--android:divider="@color/list_divider_color"-->
+        <!--android:dividerHeight="1.0px"-->
+        <!--android:headerDividersEnabled="false"-->
+        <!--android:cacheColorHint="@color/transparent"-->
+        <!--android:fadingEdge="vertical"-->
+        <!--android:scrollbars="none"-->
+        <!--android:overScrollMode="never">-->
+
+    <!--</ListView>-->
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/blog_list"
+        tools:layout="@layout/activity_main_blog_list_item"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

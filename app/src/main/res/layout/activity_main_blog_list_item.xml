@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/blog_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_cell_background_selector"
+    android:orientation="vertical"
+    android:padding="@dimen/blog_item_padding">
+
+    <TextView
+        android:id="@+id/blog_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/blog_item_title_default"
+        android:textColor="@color/blog_item_title"
+        android:textSize="@dimen/blog_item_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/blog_item_content_marginV"
+        android:layout_marginBottom="@dimen/blog_item_content_marginV"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/blog_item_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/blog_item_avatar_marginRight"
+            android:layout_marginRight="@dimen/blog_item_avatar_marginRight"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_blog_item_avatar"
+            app:border_width="2dp"
+            app:border_color="@color/blog_item_avatar_border"/>
+
+        <TextView
+            android:id="@+id/blog_item_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blog_item_desc_default"
+            android:textColor="@color/blog_item_desc" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/blog_item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blog_item_author_default"
+            android:textColor="@color/blog_item_author"
+            android:textSize="@dimen/blog_item_author" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/blog_item_posted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/blog_item_posted_paddingRight"
+            android:paddingLeft="0dp"
+            android:paddingRight="@dimen/blog_item_posted_paddingRight"
+            android:text="@string/blog_item_posted_default"
+            android:textColor="@color/blog_item_text"
+            android:textSize="@dimen/blog_item_posted" />
+
+        <TextView
+            android:id="@+id/blog_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/blog_item_posted"
+            android:text="@string/blog_item_date_default"
+            android:textColor="@color/blog_item_text"
+            android:textSize="@dimen/blog_item_date" />
+
+        <TextView
+            android:id="@+id/blog_item_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/blog_item_comment_marginRight"
+            android:layout_toLeftOf="@+id/blog_item_reading"
+            android:text="@string/blog_item_comments_default"
+            android:textColor="@color/blog_item_text"
+            android:textSize="@dimen/blog_item_comment" />
+
+        <TextView
+            android:id="@+id/blog_item_reading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/blog_item_reading_default"
+            android:textColor="@color/blog_item_text"
+            android:textSize="@dimen/blog_item_reading" />
+    </RelativeLayout>
+
+</LinearLayout>
