@@ -10,4 +10,6 @@ package tk.wlemuel.cotable.utils;
  * @updated 2015/05/14
  */
 public interface OnWebViewImageListener {
+
+void onImageClick(String bigImageUrl);
 }
