@@ -1,4 +1,4 @@
-#Cotable - Cnblogs Client for Android
+#Cotable - Yet Another Cnblogs Client for Android
 
 ## Description
     Cotable = Code + Stable (The Paradise of Coder)
