@@ -2,7 +2,7 @@
 
 ## Description
     Cotable = Code + Stable (The Paradise of Coder)
-   
+
    The Android client of Cnblogs that named as "Cotable", the reason why I decided to make this baby is that I want to learn Android development and I like read the blogs at "www.cnblogs.com" as well. I do hope u could join me to make this application better.
 
 
@@ -59,7 +59,7 @@
 ## 介绍
     码厩 = 代码 + 马厩 （意为代码的乐园）
    这个博客园安卓客户端是我利用平时闲暇之余为了学习Android开发而写得，因为平时也喜欢逛逛博客园，所以就拿它来练手了。这个客户端现在还有很多不足之处，希望你能加入我，一起完成它。
-    
+
 ## 截图
 ![pic_03](http://git.oschina.net/wlemuel/Cotable/raw/master/screenshot/screenshot.png)
 
@@ -69,7 +69,7 @@
 ## 版本更新
     ### v1.0
     实现了基本的博客园最新博客的阅读功能。
-    
+
 ## 待添加功能
 1. 添加博客园的登录操作功能。
 2. 根据不同分类阅读博客园的新闻及最新博客。
@@ -83,7 +83,9 @@
 
     E-mail: 1078707962@qq.com
     
-    
+    正在换工作中(JAVA, Android均可)[上海], 欢迎骚扰!
+
+
 ## 感谢
 1. [android-app](http://git.oschina.net/tonlin/android-app):
    很多代码都参考了它的实现。
