@@ -53,4 +53,9 @@
         <item>Objective-C</item>
         <item>Perl</item>
     </string-array>
+    <string name="fragment_about_author_hint">エンジニア</string>
+    <string name="fragment_about_functions_hint">機能紹介</string>
+    <string name="fragment_about_updateLog_hint">更新ローグ</string>
+    <string name="fragment_about_license_hint">ライセンス</string>
+    <string name="fragment_about_source_hint">ソースコード</string>
 </resources>

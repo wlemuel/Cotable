@@ -43,4 +43,9 @@
     <string name="empty_view_network_error">Network Error</string>
     <string name="blog_item_date_default">2015-04-19 14:52</string>
     <string name="blog_item_desc_default">想到用python发送邮件主要是服务器 有时候会产生coredump文件 ，然后因为脚本重启原因，服务器coredump产生后会重启但是没有主动通知开发人员想了下可以写个脚本一旦产生coredump文件就可以发送邮件给开发者让其立马知道下面只介绍简单的发送脚本如果需要在生产环境用起来 还需要按要求修...</string>
+    <string name="fragment_about_author_hint">Developer</string>
+    <string name="fragment_about_functions_hint">Instructions</string>
+    <string name="fragment_about_license_hint">License</string>
+    <string name="fragment_about_source_hint">Source</string>
+    <string name="fragment_about_updateLog_hint">Update</string>
 </resources>

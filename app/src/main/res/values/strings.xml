@@ -62,4 +62,10 @@
     <string name="action_menu_search">搜索</string>
     <string name="action_menu_settings">设置</string>
     <string name="action_menu_user">用户</string>
+
+    <string name="fragment_about_author_hint">开发者</string>
+    <string name="fragment_about_source_hint">源代码</string>
+    <string name="fragment_about_functions_hint">功能介绍</string>
+    <string name="fragment_about_license_hint">开源协议</string>
+    <string name="fragment_about_updateLog_hint">更新日志</string>
 </resources>
