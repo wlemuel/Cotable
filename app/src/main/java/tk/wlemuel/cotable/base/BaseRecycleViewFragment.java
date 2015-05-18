@@ -96,9 +96,11 @@ public abstract class BaseRecycleViewFragment extends BaseTabFragment implements
                 }
             }
 
-            if (dy > 0) {
+            // add functions (when scroll down, the floating button will hide automatically, show
+            // otherwise.
+            if (dy > 0 && mFab.isVisible()) {
                 mFab.hide();
-            } else {
+            } else if(dy < -50 && !mFab.isVisible()) {
                 mFab.show();
             }
         }
