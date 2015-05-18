@@ -21,7 +21,7 @@
 
 ## TODO (wish list)
 1. Add the login functions.
-2. Make the blogs read by catalogs. (Need web api support).
+2. Make the blogs read by catalogs. (Need web api support, Maybe I will write it depending on Python+Django).
 3. View the comment of current blog or news.
 4. Post a new blog to the Cnblogs.
 5. Add the night read mode.
@@ -76,13 +76,14 @@
 3. 查看和添加博客评论
 4. 发布一篇博客到博客园
 5. 添加夜间阅读功能
+6. 由于web api不能可能现存的一些感觉不是太好，后期可能利用Python+Django搭建爬虫重写一下。
 6. ...
 
 
 ## 联系我
 
     E-mail: 1078707962@qq.com
-    
+
     正在换工作中(JAVA, Android均可)[上海], 欢迎骚扰!
 
 
