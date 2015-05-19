@@ -84,8 +84,6 @@
 
     E-mail: 1078707962@qq.com
 
-    正在换工作中(JAVA, Android均可)[上海], 欢迎骚扰!
-
 
 ## 感谢
 1. [android-app](http://git.oschina.net/tonlin/android-app):
