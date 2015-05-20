@@ -85,6 +85,7 @@
     E-mail: 1078707962@qq.com
 
     正在考虑换工作中(JAVA, Android均可)[上海], 欢迎骚扰!
+    Plus: 工作中做的是Java Web(略无聊), 平时学习Android(想往这个方向发展).
 
 
 ## 感谢
