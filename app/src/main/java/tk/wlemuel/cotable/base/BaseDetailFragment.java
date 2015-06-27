@@ -22,6 +22,8 @@ import org.apache.http.Header;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
 
+import tk.wlemuel.cotable.activity.view.CoScrollView;
+import tk.wlemuel.cotable.activity.view.ReaderWebView;
 import tk.wlemuel.cotable.cache.CacheManager;
 import tk.wlemuel.cotable.model.Entity;
 import tk.wlemuel.cotable.ui.empty.EmptyLayout;
@@ -39,37 +41,9 @@ import tk.wlemuel.cotable.utils.TDevice;
 public abstract class BaseDetailFragment extends BaseFragment {
 
     protected EmptyLayout mEmptyLayout;
-    protected WebView mWebView;
-    protected WebViewClient mWebViewClient = new WebViewClient() {
-        private boolean receiveError = false;
+    protected ReaderWebView mWebView;
+    protected CoScrollView mScrollView;
 
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            receiveError = false;
-        }
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return true;
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            if (mEmptyLayout != null) {
-                if (receiveError) {
-                    mEmptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
-                } else {
-                    mEmptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
-                }
-            }
-        }
-
-        @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            receiveError = true;
-        }
-
-    };
     private AsyncTask<String, Void, Entity> mCacheTask;
     protected AsyncHttpResponseHandler mHandler = new TextHttpResponseHandler() {
         @Override

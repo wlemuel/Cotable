@@ -67,6 +67,14 @@ public class StringUtils {
         return sb.toString();
     }
 
+    public static boolean isNullOrEmpty(String str){
+        if(str != null && str.trim().length()>0){
+            return false;
+        }
+        return true;
+
+    }
+
 
     /**
      * Convert {@code sdate} to {@code Date} type.
