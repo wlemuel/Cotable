@@ -1,6 +1,7 @@
 package tk.wlemuel.cotable.activity.view;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ScrollView;
@@ -90,10 +91,10 @@ public class CoScrollView  extends ScrollView {
 
 
     public boolean canScrollUp() {
-        return canScrollVertically(-1);
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && canScrollVertically(-1);
     }
     public boolean canScrollDown() {
-        return canScrollVertically(1);
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH && canScrollVertically(1);
     }
 }
 
