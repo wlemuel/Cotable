@@ -36,6 +36,7 @@
     <color name="white">#fff</color>
     <color name="black">#000</color>
     <color name="grey">#9A9A9A</color>
+    <color name="divider_grey">#e9eff3</color>
 
     <!--Toolbar Configuration-->
     <color name="toolbar_text_color">@color/text_color_white</color>

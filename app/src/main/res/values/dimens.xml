@@ -12,8 +12,9 @@
     <dimen name="pager_sliding_tab_strip_height">40.0dip</dimen>
 
     <dimen name="space_8">8.0dip</dimen>
-    <dimen name="space_10">10.0dip</dimen>
+    <dimen name="space_55">55.0dip</dimen>
     <dimen name="space_16">16.0dip</dimen>
+    <dimen name="space_10">10.0dip</dimen>
 
     <!--Drawer left configuration-->
     <dimen name="drawer_left_header_width">280dp</dimen>
@@ -52,4 +53,5 @@
     <dimen name="blog_item_comment">10sp</dimen>
     <dimen name="blog_item_comment_marginRight">5dp</dimen>
     <dimen name="blog_item_reading">10sp</dimen>
+    <dimen name="reader_detail_margin">12dp</dimen>
 </resources>
