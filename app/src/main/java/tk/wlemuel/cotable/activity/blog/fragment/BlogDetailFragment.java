@@ -1,14 +1,20 @@
 package tk.wlemuel.cotable.activity.blog.fragment;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.io.Serializable;
 
 import tk.wlemuel.cotable.R;
+import tk.wlemuel.cotable.activity.view.CoScrollView;
+import tk.wlemuel.cotable.activity.view.ReaderWebView;
+import tk.wlemuel.cotable.activity.view.ScrollDirectionListener;
 import tk.wlemuel.cotable.api.BlogApi;
 import tk.wlemuel.cotable.base.BaseDetailFragment;
 import tk.wlemuel.cotable.core.AppConfig;
@@ -16,6 +22,8 @@ import tk.wlemuel.cotable.core.AppContext;
 import tk.wlemuel.cotable.model.BlogDetail;
 import tk.wlemuel.cotable.model.Entity;
 import tk.wlemuel.cotable.ui.empty.EmptyLayout;
+import tk.wlemuel.cotable.utils.BlogReaderAnim;
+import tk.wlemuel.cotable.utils.StringUtils;
 
 /**
  * BlogDetailFragment
@@ -26,7 +34,11 @@ import tk.wlemuel.cotable.ui.empty.EmptyLayout;
  * @created 2015/05/11
  * @updated 2015/05/11
  */
-public class BlogDetailFragment extends BaseDetailFragment {
+public class BlogDetailFragment extends BaseDetailFragment implements
+        ScrollDirectionListener,
+        ReaderWebView.ReaderWebViewPageFinishedListener,
+        ReaderWebView.ReaderCustomViewListener,
+        ReaderWebView.ReaderWebViewUrlClickListener {
 
     public static final String BUNDLE_KEY_BLOG_ID = "BLOG_ID";
     public static final String BUNDLE_KEY_BLOG_TITLE = "BLOG_TITLE";
@@ -44,6 +56,8 @@ public class BlogDetailFragment extends BaseDetailFragment {
     private String mBlogReads;
     private String mBlogPosted;
     private BlogDetail mBlogDetail;
+
+    private RelativeLayout layout_actions;
 
     @Override
     public void onClick(View v) {
@@ -81,12 +95,70 @@ public class BlogDetailFragment extends BaseDetailFragment {
 
     private void initViews(View view) {
         mEmptyLayout = (EmptyLayout) view.findViewById(R.id.error_layout);
-        mWebView = (WebView) view.findViewById(R.id.webview);
-
+        mScrollView = (CoScrollView) view.findViewById(R.id.sv_blog_container);
+        mScrollView.setScrollDirectionListener(this);
+        mWebView = (ReaderWebView)view.findViewById(R.id.webview);
+        layout_actions = (RelativeLayout)view.findViewById(R.id.layout_actions);
         initWebView(mWebView);
-
+        mWebView.setPageFinishedListener(this);
+        layout_actions.setVisibility(View.INVISIBLE);
         view.findViewById(R.id.ib_zoomin).setOnClickListener(this);
         view.findViewById(R.id.ib_zoomout).setOnClickListener(this);
+    }
+
+    @Override
+    public void onPageFinished(WebView view, String url,boolean receiveError) {
+        if (!isAdded()) {
+            return;
+        }
+        if (mEmptyLayout != null) {
+            if (receiveError) {
+                mEmptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+            } else {
+                mEmptyLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+            }
+        }
+    }
+
+
+
+    @Override
+    public void onScrollUp() {
+        showIconBar(true);
+        // showToolbar(true); 显示ToolBar
+    }
+
+    private void showIconBar(boolean show) {
+        if (isAdded() && canShowIconBar()) {
+            BlogReaderAnim.animateBottomBar(layout_actions, show);
+        }
+    }
+
+    private boolean canShowIconBar() {
+        if (mBlogDetail == null || StringUtils.isNullOrEmpty(mBlogDetail.getBody())) {
+            return false;
+        }
+//        return (mBlogDetail.isLikesEnabled()
+//                || mBlogDetail.canReply()
+//                || mBlogDetail.isCommentsOpen());  //判断博客是否能被点赞、回复、评论
+        return true;
+    }
+
+
+
+    @Override
+    public void onScrollDown() {
+        if (mScrollView.canScrollDown() && mScrollView.canScrollUp()) {
+            showIconBar(false);
+           // showToolbar(false);
+        }
+    }
+
+    @Override
+    public void onScrollCompleted() {
+        if (!mScrollView.canScrollDown()) {
+            showIconBar(true);
+        }
     }
 
     @Override
@@ -117,7 +189,6 @@ public class BlogDetailFragment extends BaseDetailFragment {
     }
 
     private void fillWebViewBody() {
-        mWebView.setWebViewClient(mWebViewClient);
 
         String content = AppContext.getFromAssets(CONTENT_TEMPLATE);
         if (content == null) content = "";
@@ -131,5 +202,53 @@ public class BlogDetailFragment extends BaseDetailFragment {
 
         mWebView.loadDataWithBaseURL(
                 AppConfig.LOCAL_PATH, content, mimeType, AppConfig.UTF8, null);
+        layout_actions.setVisibility(View.VISIBLE);
     }
+
+    /*
+    * 点击WebView的URl地址事件
+    * */
+    @Override
+    public boolean onUrlClick(String url) {
+
+        return true;
+    }
+    /*
+    * 点击WebView的图片事件
+    *
+    * */
+    @Override
+    public boolean onImageUrlClick(String imageUrl, View view, int x, int y) {
+        //点击WebView的图片
+        return true;
+    }
+
+
+    /*
+    * 关于视频的点击操作事件
+    */
+    @Override
+    public ViewGroup onRequestCustomView() {
+        return null;
+    }
+
+    /*
+     * 关于视频的点击操作事件
+     */
+    @Override
+    public ViewGroup onRequestContentView() {
+        return null;
+    }
+
+    @Override
+    public void onCustomViewShown() {
+
+    }
+
+    @Override
+    public void onCustomViewHidden() {
+
+    }
+
+
 }

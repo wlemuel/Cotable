@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity {
     private void initView(Bundle savedInstanceState) {
         initActionBar();
         initSlidingMenu();
-
     }
 
     /**
