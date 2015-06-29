@@ -1,6 +1,7 @@
 package tk.wlemuel.cotable.activity.blog.fragment;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 import java.io.Serializable;
 
 import tk.wlemuel.cotable.R;
+import tk.wlemuel.cotable.activity.blog.Interface.AutoHideToolBarListener;
 import tk.wlemuel.cotable.activity.view.CoScrollView;
 import tk.wlemuel.cotable.activity.view.ReaderWebView;
 import tk.wlemuel.cotable.activity.view.ScrollDirectionListener;
@@ -59,6 +61,12 @@ public class BlogDetailFragment extends BaseDetailFragment implements
 
     private RelativeLayout layout_actions;
 
+    private AutoHideToolBarListener autoHideToolBarListener;
+
+    public void setOnAutoHideToolBarListener(AutoHideToolBarListener autoHideToolBarListener){
+        this.autoHideToolBarListener = autoHideToolBarListener;
+    }
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -70,6 +78,14 @@ public class BlogDetailFragment extends BaseDetailFragment implements
         }
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+//        第二种方式回调Acitivity的ToolBal隐藏和显示操作
+//        if (activity instanceof AutoHideToolBarListener) {
+//            autoHideToolBarListener = (AutoHideToolBarListener) activity;
+//        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -125,7 +141,13 @@ public class BlogDetailFragment extends BaseDetailFragment implements
     @Override
     public void onScrollUp() {
         showIconBar(true);
-        // showToolbar(true); 显示ToolBar
+        showToolbar(true); //显示ToolBar
+    }
+
+    private void showToolbar(boolean show){
+        if(autoHideToolBarListener != null){
+            autoHideToolBarListener.onShowHideToolbar(show);
+        }
     }
 
     private void showIconBar(boolean show) {
@@ -150,7 +172,7 @@ public class BlogDetailFragment extends BaseDetailFragment implements
     public void onScrollDown() {
         if (mScrollView.canScrollDown() && mScrollView.canScrollUp()) {
             showIconBar(false);
-           // showToolbar(false);
+            showToolbar(false);
         }
     }
 

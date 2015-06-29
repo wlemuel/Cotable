@@ -68,7 +68,7 @@ public class SimpleBackActivity extends BaseActivity {
             if (args != null) {
                 fragment.setArguments(args);
             }
-
+            onAfterInitDefaultFragmentLayout(fragment);
 
             FragmentTransaction trans = getSupportFragmentManager()
                     .beginTransaction();
@@ -95,6 +95,10 @@ public class SimpleBackActivity extends BaseActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    protected  void onAfterInitDefaultFragmentLayout(Fragment fragment){
+
     }
 
     @Override

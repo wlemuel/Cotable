@@ -9,6 +9,7 @@ import android.webkit.WebView;
 
 import java.util.Map;
 
+import tk.wlemuel.cotable.activity.blog.view.DetailActivity;
 import tk.wlemuel.cotable.activity.common.SimpleBackActivity;
 import tk.wlemuel.cotable.model.SimpleBackPage;
 
@@ -65,7 +66,7 @@ public class UIHelper {
 
     public static void showSimpleBack(Context context, SimpleBackPage page,
                                       Bundle args) {
-        Intent intent = new Intent(context, SimpleBackActivity.class);
+        Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(SimpleBackActivity.BUNDLE_KEY_ARGS, args);
         intent.putExtra(SimpleBackActivity.BUNDLE_KEY_PAGE, page.getValue());
         context.startActivity(intent);

@@ -24,7 +24,7 @@ import tk.wlemuel.cotable.utils.TDevice;
 public abstract class BaseActivity extends ActionBarActivity {
 
     protected LayoutInflater mInflater;
-    private Toolbar mActionBar;
+    protected Toolbar mActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
