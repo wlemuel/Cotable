@@ -1,5 +1,7 @@
 #Cotable - Yet Another Cnblogs Client for Android
 
+[![Join the chat at https://gitter.im/Lemueler/Cotable](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Lemueler/Cotable?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Description
     Cotable = Code + Stable (The Paradise of Coder)
 
