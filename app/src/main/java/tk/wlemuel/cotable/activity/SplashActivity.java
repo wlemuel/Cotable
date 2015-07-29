@@ -13,7 +13,7 @@ import tk.wlemuel.cotable.utils.TDevice;
 
 public class SplashActivity extends BaseActivity {
 
-    public static final int MAX_WATTING_TIME = 3000; // Wait for 3 seconds
+    public static final int MAX_WAITING_TIME = 3000; // Wait for 3 seconds
     private static final String SPLASH_SCREEN = "SplashScreen";
     protected boolean mShouldGoTo = true;
 
@@ -28,7 +28,7 @@ public class SplashActivity extends BaseActivity {
 
 
         AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
-        aa.setDuration(MAX_WATTING_TIME);
+        aa.setDuration(MAX_WAITING_TIME);
         view.startAnimation(aa);
         aa.setAnimationListener(new Animation.AnimationListener() {
 

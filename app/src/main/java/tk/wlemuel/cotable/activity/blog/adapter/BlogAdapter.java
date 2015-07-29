@@ -4,16 +4,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
-import org.apache.http.Header;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import tk.wlemuel.cotable.R;
-import tk.wlemuel.cotable.api.BlogApi;
 import tk.wlemuel.cotable.base.BaseRecycleAdapter;
 import tk.wlemuel.cotable.model.Blog;
 import tk.wlemuel.cotable.utils.HtmlUtils;
@@ -62,26 +54,26 @@ public class BlogAdapter extends BaseRecycleAdapter {
     }
 
     private void setAuthorAvatar(String blogapp, final CircleImageView imageView) {
-        BlogApi.getAuthorAvatar(blogapp, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    JSONObject info = (JSONObject) response.get("data");
-                    String avatar = info.getString("avatar");
-                    if (avatar != null && !avatar.equals(""))
-                        ImageLoader.getInstance().displayImage(avatar, imageView);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                super.onFailure(statusCode, headers, throwable, errorResponse);
-            }
-        });
-
+//        BlogApi.getAuthorAvatar(blogapp, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                try {
+//                    JSONObject info = (JSONObject) response.get("data");
+//                    String avatar = info.getString("avatar");
+//                    if (avatar != null && !avatar.equals(""))
+//                        ImageLoader.getInstance().displayImage(avatar, imageView);
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                super.onFailure(statusCode, headers, throwable, errorResponse);
+//            }
+//        });
+//
 
     }
 
